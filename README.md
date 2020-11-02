@@ -53,7 +53,7 @@ export default App;
 
 Here, just add the models you want as a Resource.
 
-Important: If a resource contains any references (entry / entries fields), you MUST add the referenced models too. To hide an untwanted model from the sidebar, just set list to undefined (or do not use entryCrud spread syntax).
+Important: If a resource contains any references (entry / entries fields), you MUST add the referenced models too. To hide an untwanted model from the sidebar, just set list to undefined (or do not use entryCrud spread syntax and omit list prop).
 
 ## Provider Hooks
 
@@ -117,7 +117,7 @@ Implement generic [Create](https://marmelab.com/react-admin/CreateEdit.html) vie
 
 ### EntryCreate [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryCreate.tsx)
 
-Just like EntryEdit, just for [Create](https://marmelab.com/react-admin/CreateEdit.html), without readOnly fields and without delete button.
+Like EntryEdit, just for [Create](https://marmelab.com/react-admin/CreateEdit.html), without readOnly fields and without delete button.
 
 ### EntryShow [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryShow.tsx)
 
@@ -130,31 +130,63 @@ Implements [Show](https://marmelab.com/react-admin/Show.html) view for a single 
 ### useFields hook [show source](https://github.com/entrecode/ec.admin/blob/master/src/useFields.tsx)
 
 Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified".
-Use it as second argument of fieldProps or inputProps.
+Intended for usage as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter. Example:
 
-TBD: rename to useModelConfig? useFields maybe confusing as it can be used with fields and inputs.
+<!-- TODO: rename to useModelConfig? useFields maybe confusing as it can be used with fields and inputs. -->
+
+```js
+export const MyList = (props) => {
+  let { fieldConfig, defaultColumns } = useFields(props.resource);
+  if (!fieldConfig) {
+    return <Loading />;
+  }
+  /*
+    do something with fieldConfig
+  */
+};
+```
 
 ### fieldProps(field, fieldConfig) [show source](https://github.com/entrecode/ec.admin/blob/master/src/fields/fieldProps.tsx)
 
 Returns entry field props that can be passed to a [Field](https://marmelab.com/react-admin/Fields.html).
 Automatically populates field type specific data. Expects fieldConfig as obtained from useFields hook.
 
+```jsx
+<TextField {...fieldProps('name', fieldConfig)} />
+```
+
 ### inputProps(field, fieldConfig) [show source](https://github.com/entrecode/ec.admin/blob/master/src/inputs/inputProps.tsx)
 
 Returns entry field props that can be passed to an [Input](https://marmelab.com/react-admin/Inputs.html).
 Automatically populates input type specific data. Expects fieldConfig as obtained from useFields hook.
 
+```jsx
+<TextInput {...inputProps('name', fieldConfig)} />
+```
+
 ### TypeField [show source](https://github.com/entrecode/ec.admin/blob/master/src/fields/TypeField.tsx).
 
 Entry specific [Field](https://marmelab.com/react-admin/Fields.html) implementation. Renders the value of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryList and EntryShow.
+
+```jsx
+<TypeField {...fieldProps('name', fieldConfig)} />
+```
 
 ### TypeInput [show source](https://github.com/entrecode/ec.admin/blob/master/src/inputs/TypeInput.tsx)
 
 Entry specific [Input](https://marmelab.com/react-admin/Inputs.html) implementation. Renders the form input of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryCreate, EntryEdit.
 
+```jsx
+<TypeInput {...inputProps('name', fieldConfig)} />
+```
+
 ### TypeFilter [show source](https://github.com/entrecode/ec.admin/blob/master/src/filters/TypeFilter.tsx)
 
 Entry specific [Input](https://marmelab.com/react-admin/Inputs.html) Implementation. Renders the filter input of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryListFilter.
+
+```jsx
+<TypeFilter {...inputProps('name', fieldConfig)} />
+```
 
 ## TBD
 
