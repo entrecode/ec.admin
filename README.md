@@ -99,17 +99,17 @@ The easiest way to implement a custom view is to copy the generic component and 
 Implements generic [List](https://marmelab.com/react-admin/List.html) for entries.
 
 - renders all model fields as a [CustomizableDatagrid](https://github.com/fizix-io/ra-customizable-datagrid) (according to field config)
-- each field is rendered using TypeField (see below)
-- supports pagination, sorting, filtering + persistent field visibility. Fetches data via dataProvider#getList (which calls PublicAPI#entryList).
+- each field is rendered as a [TypeField](https://github.com/entrecode/ec.admin/blob/master/src/fields/TypeField.tsx)
+- supports pagination, sorting, filtering + persistent field visibility.
 - supports all field types, except account + roles
 - provides a [filter](https://marmelab.com/react-admin/List.html#the-filter-buttonform-combo) for each filterable field.
 - opens edit on click + has create button action.
 
 ### EntryEdit [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryEdit.tsx)
 
-Implement generic [Create and Edit](https://marmelab.com/react-admin/CreateEdit.html) views for a single entry.
+Implement generic [Create](https://marmelab.com/react-admin/CreateEdit.html) views for a single entry.
 
-- renders TypeInput for each field (according to field config)
+- renders a [TypeInput](https://github.com/entrecode/ec.admin/blob/master/src/inputs/TypeInput.tsx) for each field (according to field config)
 - disables readOnly fields
 - currently only limited validation support
 - supports all field types except account, roles and entry/asset fields without validation.
@@ -117,7 +117,7 @@ Implement generic [Create and Edit](https://marmelab.com/react-admin/CreateEdit.
 
 ### EntryCreate [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryCreate.tsx)
 
-Just like EntryEdit, just no readOnly fields and no delete button.
+Just like EntryEdit, just for [Create](https://marmelab.com/react-admin/CreateEdit.html), without readOnly fields and without delete button.
 
 ### EntryShow [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryShow.tsx)
 
@@ -148,7 +148,7 @@ Automatically populates input type specific data. Expects fieldConfig as obtaine
 
 Entry specific [Field](https://marmelab.com/react-admin/Fields.html) implementation. Renders the value of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryList and EntryShow.
 
-### TypeInput [show source](https://github.com/entrecode/ec.admin/tree/master/src/inputs)
+### TypeInput [show source](https://github.com/entrecode/ec.admin/blob/master/src/inputs/TypeInput.tsx)
 
 Entry specific [Input](https://marmelab.com/react-admin/Inputs.html) implementation. Renders the form input of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryCreate, EntryEdit.
 
