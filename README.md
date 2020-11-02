@@ -71,13 +71,11 @@ Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider)
 
 ### entryCrud [show source](https://github.com/entrecode/ec.admin/blob/master/src/entryCrud.tsx)
 
-Collection of crud components for entries. Intended to be used on a [Resource](https://marmelab.com/react-admin/Resource.html) using spread syntax:
+Collection of generic crud components for entries. Intended to be used on a [Resource](https://marmelab.com/react-admin/Resource.html) using spread syntax:
 
 ```jsx
 <Resource name={'muffin'} {...entryCrud} />
 ```
-
-Contains generic components for all CRUD operations:
 
 - list: [EntryList](https://github.com/entrecode/ec.admin/blob/master/src/EntryList.tsx)
 - create: [EntryCreate](https://github.com/entrecode/ec.admin/blob/master/src/EntryCreate.tsx)
@@ -86,13 +84,13 @@ Contains generic components for all CRUD operations:
 
 ### Custom Views
 
-If you want to use a custom for any view, you can just override its prop on the desired [Resource](https://marmelab.com/react-admin/Resource.html):
+If you want to use a custom component for any view, you can replace the generic crud component by override its prop on the desired [Resource](https://marmelab.com/react-admin/Resource.html):
 
 ```jsx
 <Resource name={'muffin'} {...entryCrud} list={MuffinList} />
 ```
 
-This will render `MuffinList` as custom list view. Of course, this is possible with crud prop.
+This will render `MuffinList` as custom list view. Of course, this is possible with any crud prop.
 
 The easiest way to implement a custom view is to copy the generic component and adjust the parts that should be custom. To understand how the different views work, read on.
 
