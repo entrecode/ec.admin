@@ -65,6 +65,8 @@ After saving, and logging in with your ec.account (stage), you should see the th
 
 You are now ready to customize the admin, using ec.admin as an adapter between ec.sdk and react-admin.
 
+For inspiration, you should check out [light.react-admin](https://github.com/entrecode/light.react-admin/blob/develop/src/App.tsx), where ec.admin is already in use.
+
 ## Localization
 
 To set the language and setup labels for fields, you can use i18nProvider. Example:
