@@ -61,7 +61,7 @@ Important: If a resource contains any references (entry / entries fields), you M
 
 After saving, and logging in with your ec.account (stage), you should see the this:
 
-![react-admin UI](./screenshot.png).
+![react-admin demo](./demo.gif).
 
 You are now ready to customize the admin, using ec.admin as an adapter between ec.sdk and react-admin.
 
