@@ -193,7 +193,7 @@ Implements generic [List](https://marmelab.com/react-admin/List.html) for entrie
 
 ### EntryEdit [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryEdit.tsx)
 
-Implement generic [Create](https://marmelab.com/react-admin/CreateEdit.html) views for a single entry.
+Implements generic [Edit](https://marmelab.com/react-admin/CreateEdit.html) views for a single entry.
 
 - renders a [TypeInput](https://github.com/entrecode/ec.admin/blob/master/src/inputs/TypeInput.tsx) for each field (according to field config)
 - disables readOnly fields
