@@ -4,8 +4,8 @@ import { pick, getFormData } from './helpers';
 
 // implements a custom data provider for ec.sdk
 // see https://marmelab.com/react-admin/DataProviders.html
-export default async (datamanagerID) => {
-  const api = new PublicAPI(datamanagerID, 'stage', true);
+export default async (datamanagerID, env = 'stage', ecUser = true) => {
+  const api = new PublicAPI(datamanagerID, env, ecUser);
   const systemFields = ['id', /* 'creator', */ '_created', '_modified', '_entryTitle'];
   return {
     api,

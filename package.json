@@ -18,6 +18,11 @@
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.json\""
   },
+  "peerDependencies": {
+    "react-admin": "^3.9.5",
+    "ec.sdk": "^0.22.2",
+    "ra-customizable-datagrid": "^1.1.0"
+  },
   "devDependencies": {
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
