@@ -1,7 +1,8 @@
 import React from 'react';
 import { AvatarField } from './AvatarField';
 
-export function AvatarsField({ record, source, src }) {
+export function AvatarsField(props) {
+  const { record, source, src } = props;
   const assets = record[source];
   if (!assets) {
     return <></>;

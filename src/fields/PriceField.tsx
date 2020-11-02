@@ -8,7 +8,7 @@ const currency = new Intl.NumberFormat('de', {
 export function PriceField(props) {
   const { source, record } = props;
   if (!record[source]) {
-    return '';
+    return <></>;
   }
   return <span>{currency.format(record[source])}</span>;
 }

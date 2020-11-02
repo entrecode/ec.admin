@@ -4,7 +4,8 @@ import { EntryInput } from './EntryInput';
 import { EntriesInput } from './EntriesInput';
 import { MissingInput } from './MissingInput';
 
-export function TypeInput({ type, ...props }) {
+export function TypeInput(_props) {
+  const { type, ...props } = _props;
   if (['text', 'string', 'phone'].includes(type)) {
     return <TextInput {...props} />;
   }

@@ -160,7 +160,7 @@ export default async (datamanagerID) => {
 async function uploadAssets(data, fieldConfig, api) {
   // TODO: support assetS fields + maybe also implemented legacy assets
   const assets = Object.fromEntries(
-    Object.entries(fieldConfig)
+    Object.entries<any>(fieldConfig)
       .filter(([key, { type }]) => type === 'asset' && data[key]?.rawFile)
       .map(([key]) => [key, data[key].rawFile])
   );
@@ -182,7 +182,7 @@ async function uploadAssets(data, fieldConfig, api) {
 }
 
 function deserialize(entry, fieldConfig) {
-  Object.entries(fieldConfig).forEach(([property, { type }]) => {
+  Object.entries<any>(fieldConfig).forEach(([property, { type }]) => {
     if (['location', 'json'].includes(type) && !!entry[property]) {
       entry[property] = JSON.stringify(entry[property]);
     }
@@ -197,7 +197,7 @@ function deserialize(entry, fieldConfig) {
 }
 
 function serialize(entry, fieldConfig) {
-  Object.entries(fieldConfig).forEach(([property, { type }]) => {
+  Object.entries<any>(fieldConfig).forEach(([property, { type }]) => {
     if (['location', 'json'].includes(type) && !!entry[property]) {
       entry[property] = JSON.parse(entry[property]);
     }

@@ -43,13 +43,13 @@ export function TypeField({ type, ...props }) {
     return <TypographyField {...props} />;
   }
   if (type === 'location') {
-    return props.record[props.source] ? <RoomIcon /> : '';
+    return props.record[props.source] ? <RoomIcon /> : <></>;
   }
   if (type === 'account') {
-    return props.record[props.source] ? <AccountCircleIcon /> : '';
+    return props.record[props.source] ? <AccountCircleIcon /> : <></>;
   }
   if (type === 'role') {
-    return props.record[props.source] ? <FormatPaintIcon /> : '';
+    return props.record[props.source] ? <FormatPaintIcon /> : <></>;
   }
   if (['boolean'].includes(type)) {
     return <BooleanField {...props} />;

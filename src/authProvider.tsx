@@ -1,6 +1,6 @@
 import { Session, Accounts } from 'ec.sdk';
 
-export default (env = 'stage', clientID = 'rest') => {
+export default (env: 'stage' | 'live' = 'stage', clientID = 'rest') => {
   const session = new Session(env);
   const accounts = new Accounts(env);
   let userIdentity; // https://marmelab.com/blog/2020/10/07/react-admin-october-update.html#user-menu-improvements
