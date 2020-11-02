@@ -9,8 +9,8 @@ This is how you create a new project with ec.admin.
 ### 1. init react-app
 
 ```sh
-npx create-react-app ec.admin-demo --template typescript --use-npm
-cd ec.admin-demo
+npx create-react-app ec.admin-app --template typescript --use-npm
+cd ec.admin-app
 npm i --save ec.admin
 ```
 
