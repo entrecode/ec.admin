@@ -14,9 +14,9 @@ cd ec.admin-app
 npm i --save ec.admin react-admin ec.sdk ra-customizable-datagrid
 ```
 
-### 2. Setup ec.admin
+### 2. Start Dev Server
 
-For ec.sdk to work, prepend "HTTPS=true" to package.json#scripts.start:
+For ec.sdk auth to work, prepend "HTTPS=true" to package.json#scripts.start:
 
 ```js
 {
@@ -24,6 +24,8 @@ For ec.sdk to work, prepend "HTTPS=true" to package.json#scripts.start:
   /* .. */
 }
 ```
+
+now you can run `npm start`.
 
 ### 3. Code
 
@@ -54,6 +56,88 @@ export default App;
 Here, just add the models you want as a Resource.
 
 Important: If a resource contains any references (entry / entries fields), you MUST add the referenced models too. To hide an untwanted model from the sidebar, just set list to undefined (or do not use entryCrud spread syntax and omit list prop).
+
+### 4. Have fun
+
+After saving, and logging in with your ec.account (stage), you should see the this:
+
+![react-admin UI](./screenshot.png).
+
+You are now ready to customize the admin, using ec.admin as an adapter between ec.sdk and react-admin.
+
+## Localization
+
+To set the language and setup labels for fields, you can use i18nProvider. Example:
+
+```js
+// App.tsx
+import domainMessages from './i18n';
+import germanMessages from 'ra-language-german';
+import polyglotI18nProvider from 'ra-i18n-polyglot';
+
+const messages = {
+  de: { ...germanMessages, ...domainMessages.de }, // add more languages here
+};
+const i18nProvider = polyglotI18nProvider((locale) => {
+  return messages[locale];
+}, 'de');
+
+const App = () => {
+  /* .. */
+  return <Admin i18nProvider={i18nProvider}>{/* stuff */}</Admin>;
+};
+```
+
+example domainMessages:
+
+```js
+import germanMessages from 'ra-language-german';
+
+export default {
+  de: {
+    resources: {
+      muffin: {
+        name: 'Muffin |||| Muffins',
+        fields: {
+          name: 'Name',
+          amazement_factor: 'Amusement',
+          _created: 'Erstellt',
+          _modified: 'Bearbeitet',
+        },
+      },
+      // ... more resources
+    },
+    // the following is just relevant for german:
+    ra: {
+      ...germanMessages.ra,
+      page: {
+        ...germanMessages.ra.page,
+        loading: 'Bin Laden',
+      },
+    },
+  },
+};
+```
+
+For more info, check out [ra translation doc](https://marmelab.com/react-admin/Translation.html).
+There is also a tutorial on how to add a language switcher
+
+## Theming
+
+To theme the admin, use Admin theme prop:
+
+```js
+// App.tsx
+import { themes } from 'ec.admin';
+/* more imports */
+
+const App = () => {
+  /* .. */
+  return <Admin theme={themes.dark}>{/* stuff */}</Admin>;
+};
+```
+
+Checkout [ra theme docs](https://marmelab.com/react-admin/Theming.html) for more info.
 
 ## Provider Hooks
 
@@ -125,7 +209,7 @@ Implements [Show](https://marmelab.com/react-admin/Show.html) view for a single 
 
 - renders field label + TypeField for each field (according to config).
 
-## Helper Components
+## Helpers
 
 ### useFields hook [show source](https://github.com/entrecode/ec.admin/blob/master/src/useFields.tsx)
 
@@ -188,26 +272,30 @@ Entry specific [Input](https://marmelab.com/react-admin/Inputs.html) Implementat
 <TypeFilter {...inputProps('name', fieldConfig)} />
 ```
 
-## TBD
+## Roadmap
 
-There is more in the making:
+The following features may be implemented in the future:
 
-### localization
+### Resource Support
 
-- LocaleSwitcher
-- i18nProvider
+Currently, dataProvider only wraps one instance of PublicAPI.
+It would be a great addition if multiple instances of a PublicAPI could be accessed with one [dataProvider](https://marmelab.com/react-admin/DataProviders.html#extending-a-data-provider-example-of-file-upload).
+Also, the more generic Resources could be supported. This would enable potential CRUD support for all entrecode resources. The implementation could be done step by step:
 
-### themes
+- AssetGroup / Asset => asset browser using [GridList](https://material-ui.com/components/grid-list/)
+- DataManager => use multiple datamanagers at the same time
+- .. potential implementation of any other ec.resource
 
-- themes.light
-- themes.dark
+### Custom Filter Sidebar
 
-## dev setup
+Currently, the [FilterList sidebar](https://marmelab.com/react-admin/List.html#the-filterlist-sidebar) only supports one selection per property (and does not play well with object values). It would be good to have a more sophisticated FitlerList sidebar. Maybe this will also be implemented by react-admin in the future, as the FilterList sidebar is relatively new.. _but maybe only for enterprise edition_
 
-- clone ec.admin repo
-- run "yarn link" in ec.admin root
-- go to other project (e.g. light.react-admin)
-- run "yarn link ec.admin"
-- run yarn start
-- After every change in ec.admin, the "yarn build" needs to run. TODO: create watcher script
-- problem: yarn build needs node_modules to build, but the other projects will be confused by node_modules inside a package (two react versions). As a current workaround, I created the hackybuild.js script which temporarily renames node_modules to \_node_modules ... dont tell anyone
+### Add Proper Demo for Development
+
+For faster development, it would be good to have a demo that is not part of the build.
+I tried working with symlinks but this sucks. Why?
+
+- need to build typescript on every save
+- need ec.admin/node_modules to run ts build
+- => this will break the project where ec.admin is symlinked
+- for now, I created the hackybuild.js script which temporarily renames node_modules to \_node_modules ... dont tell anyone
