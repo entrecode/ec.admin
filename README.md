@@ -71,7 +71,7 @@ Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider)
 
 ### entryCrud [show source](https://github.com/entrecode/ec.admin/blob/master/src/entryCrud.tsx)
 
-Collection of generic crud components for entries. Intended to be used on a [Resource](https://marmelab.com/react-admin/Resource.html) using spread syntax:
+Collection of generic CRUD components for entries. Intended to be used on a [Resource](https://marmelab.com/react-admin/Resource.html) using spread syntax:
 
 ```jsx
 <Resource name={'muffin'} {...entryCrud} />
@@ -84,7 +84,7 @@ Collection of generic crud components for entries. Intended to be used on a [Res
 
 ### Custom Views
 
-If you want to use a custom component for any view, you can replace the generic crud component by override its prop on the desired [Resource](https://marmelab.com/react-admin/Resource.html):
+If you want to replace a generic CRUD view with a custom component, you can override its prop on the desired [Resource](https://marmelab.com/react-admin/Resource.html):
 
 ```jsx
 <Resource name={'muffin'} {...entryCrud} list={MuffinList} />
