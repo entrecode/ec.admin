@@ -59,11 +59,11 @@ Important: If a resource contains any references (entry / entries fields), you M
 
 Using hooks, you can obtain the following providers:
 
-### useDatamanager(datamanagerID, env?, ecUser?)
+### useDatamanager(datamanagerID, env?, ecUser?) [show source](https://github.com/entrecode/ec.admin/blob/master/src/useDatamanager.tsx)
 
 Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [PublicAPI](https://entrecode.github.io/ec.sdk/#publicapi). See "Get Started" for usage.
 
-## useSession(env?, clientID?)
+## useSession(env?, clientID?) [show source](https://github.com/entrecode/ec.admin/blob/master/src/useSession.tsx)
 
 Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider) that internally uses [Session](https://entrecode.github.io/ec.sdk/#session) and [Accounts](https://entrecode.github.io/ec.sdk/#accounts). See "Get Started" for usage.
 
