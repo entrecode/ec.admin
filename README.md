@@ -2,212 +2,36 @@
 
 entrecode flavoured components for [react-admin](https://marmelab.com/react-admin/).
 
-## Get Started
+## [Documentation](https://entrecode.github.io/ec.admin/docs/) 
 
-This is how you create a new project with ec.admin.
+## Demo
 
-### 1. Init react-app
+The demo lives in /demo. It is a simple project that runs with parcel:
 
 ```sh
-npx create-react-app ec.admin-app --template typescript --use-npm
-cd ec.admin-app
-npm i --save ec.admin react-admin ec.sdk ra-customizable-datagrid
+npm run demo
 ```
 
-### 2. Setup ec.admin
+## Presentation
 
-For ec.sdk to work, prepend "HTTPS=true" to package.json#scripts.start:
-
-```js
-{
-  "start": "HTTPS=true react-scripts start"
-  /* .. */
-}
+```sh
+npm run deck
 ```
 
-### 3. Code
+## Roadmap
 
-Here is a minimal setup for ec.admin:
+The following features may be implemented in the future:
 
-```tsx
-import React from 'react';
-import { Admin, Resource, Loading } from 'react-admin';
-import { useSession, useDatamanager, entryCrud } from 'ec.admin';
+### Resource Support
 
-const App = () => {
-  const dataProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42'); // datamanagerID
-  const authProvider = useSession();
-  if (!dataProvider || !authProvider) {
-    return <Loading />;
-  }
-  return (
-    <Admin dataProvider={dataProvider} authProvider={authProvider}>
-      <Resource name={'muffin'} {...entryCrud} />
-      <Resource name={'baker'} {...entryCrud} />
-      <Resource name={'field_test'} {...entryCrud} />
-    </Admin>
-  );
-};
-export default App;
-```
+Currently, dataProvider only wraps one instance of PublicAPI.
+It would be a great addition if multiple instances of a PublicAPI could be accessed with one [dataProvider](https://marmelab.com/react-admin/DataProviders.html#extending-a-data-provider-example-of-file-upload).
+Also, the more generic Resources could be supported. This would enable potential CRUD support for all entrecode resources. The implementation could be done step by step:
 
-Here, just add the models you want as a Resource.
+- AssetGroup / Asset => asset browser using [GridList](https://material-ui.com/components/grid-list/)
+- DataManager => use multiple datamanagers at the same time
+- .. potential implementation of any other ec.resource
 
-Important: If a resource contains any references (entry / entries fields), you MUST add the referenced models too. To hide an untwanted model from the sidebar, just set list to undefined (or do not use entryCrud spread syntax and omit list prop).
+### Custom Filter Sidebar
 
-## Provider Hooks
-
-Using hooks, you can obtain the following providers:
-
-### useDatamanager(datamanagerID, env?, ecUser?) [show source](https://github.com/entrecode/ec.admin/blob/master/src/useDatamanager.tsx)
-
-Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [PublicAPI](https://entrecode.github.io/ec.sdk/#publicapi). See "Get Started" for usage.
-
-### useSession(env?, clientID?) [show source](https://github.com/entrecode/ec.admin/blob/master/src/useSession.tsx)
-
-Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider) that internally uses [Session](https://entrecode.github.io/ec.sdk/#session) and [Accounts](https://entrecode.github.io/ec.sdk/#accounts). See "Get Started" for usage.
-
-## CRUD Components
-
-### entryCrud [show source](https://github.com/entrecode/ec.admin/blob/master/src/entryCrud.tsx)
-
-Collection of generic CRUD components for entries. Intended to be used on a [Resource](https://marmelab.com/react-admin/Resource.html) using spread syntax:
-
-```jsx
-<Resource name={'muffin'} {...entryCrud} />
-```
-
-- list: [EntryList](https://github.com/entrecode/ec.admin/blob/master/src/EntryList.tsx)
-- create: [EntryCreate](https://github.com/entrecode/ec.admin/blob/master/src/EntryCreate.tsx)
-- edit: [EntryEdit](https://github.com/entrecode/ec.admin/blob/master/src/EntryEdit.tsx)
-- show: [EntryShow](https://github.com/entrecode/ec.admin/blob/master/src/EntryShow.tsx)
-
-### Custom Views
-
-If you want to replace a generic CRUD view with a custom component, you can override its prop on the desired [Resource](https://marmelab.com/react-admin/Resource.html):
-
-```jsx
-<Resource name={'muffin'} {...entryCrud} list={MuffinList} />
-```
-
-This will render `MuffinList` as custom list view. Of course, this is possible with any crud prop.
-
-The easiest way to implement a custom view is to copy the generic component and adjust the parts that should be custom. To understand how the different views work, read on.
-
-### EntryList [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryList.tsx)
-
-Implements generic [List](https://marmelab.com/react-admin/List.html) for entries.
-
-- renders all model fields as a [CustomizableDatagrid](https://github.com/fizix-io/ra-customizable-datagrid) (according to field config)
-- each field is rendered as a [TypeField](https://github.com/entrecode/ec.admin/blob/master/src/fields/TypeField.tsx)
-- supports pagination, sorting, filtering + persistent field visibility.
-- supports all field types, except account + roles
-- provides a [filter](https://marmelab.com/react-admin/List.html#the-filter-buttonform-combo) for each filterable field.
-- opens edit on click + has create button action.
-
-### EntryEdit [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryEdit.tsx)
-
-Implement generic [Create](https://marmelab.com/react-admin/CreateEdit.html) views for a single entry.
-
-- renders a [TypeInput](https://github.com/entrecode/ec.admin/blob/master/src/inputs/TypeInput.tsx) for each field (according to field config)
-- disables readOnly fields
-- currently only limited validation support
-- supports all field types except account, roles and entry/asset fields without validation.
-- contains delete button
-
-### EntryCreate [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryCreate.tsx)
-
-Like EntryEdit, just for [Create](https://marmelab.com/react-admin/CreateEdit.html), without readOnly fields and without delete button.
-
-### EntryShow [show source](https://github.com/entrecode/ec.admin/blob/master/src/EntryShow.tsx)
-
-Implements [Show](https://marmelab.com/react-admin/Show.html) view for a single entry.
-
-- renders field label + TypeField for each field (according to config).
-
-## Helper Components
-
-### useFields hook [show source](https://github.com/entrecode/ec.admin/blob/master/src/useFields.tsx)
-
-Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified".
-Intended for usage as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter. Example:
-
-<!-- TODO: rename to useModelConfig? useFields maybe confusing as it can be used with fields and inputs. -->
-
-```js
-export const MyList = (props) => {
-  let { fieldConfig, defaultColumns } = useFields(props.resource);
-  if (!fieldConfig) {
-    return <Loading />;
-  }
-  /*
-    do something with fieldConfig
-  */
-};
-```
-
-### fieldProps(field, fieldConfig) [show source](https://github.com/entrecode/ec.admin/blob/master/src/fields/fieldProps.tsx)
-
-Returns entry field props that can be passed to a [Field](https://marmelab.com/react-admin/Fields.html).
-Automatically populates field type specific data. Expects fieldConfig as obtained from useFields hook.
-
-```jsx
-<TextField {...fieldProps('name', fieldConfig)} />
-```
-
-### inputProps(field, fieldConfig) [show source](https://github.com/entrecode/ec.admin/blob/master/src/inputs/inputProps.tsx)
-
-Returns entry field props that can be passed to an [Input](https://marmelab.com/react-admin/Inputs.html).
-Automatically populates input type specific data. Expects fieldConfig as obtained from useFields hook.
-
-```jsx
-<TextInput {...inputProps('name', fieldConfig)} />
-```
-
-### TypeField [show source](https://github.com/entrecode/ec.admin/blob/master/src/fields/TypeField.tsx).
-
-Entry specific [Field](https://marmelab.com/react-admin/Fields.html) implementation. Renders the value of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryList and EntryShow.
-
-```jsx
-<TypeField {...fieldProps('name', fieldConfig)} />
-```
-
-### TypeInput [show source](https://github.com/entrecode/ec.admin/blob/master/src/inputs/TypeInput.tsx)
-
-Entry specific [Input](https://marmelab.com/react-admin/Inputs.html) implementation. Renders the form input of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryCreate, EntryEdit.
-
-```jsx
-<TypeInput {...inputProps('name', fieldConfig)} />
-```
-
-### TypeFilter [show source](https://github.com/entrecode/ec.admin/blob/master/src/filters/TypeFilter.tsx)
-
-Entry specific [Input](https://marmelab.com/react-admin/Inputs.html) Implementation. Renders the filter input of an entry field depending on its [type](https://doc.entrecode.de/data_manager/#field-data-types). Used in EntryListFilter.
-
-```jsx
-<TypeFilter {...inputProps('name', fieldConfig)} />
-```
-
-## TBD
-
-There is more in the making:
-
-### localization
-
-- LocaleSwitcher
-- i18nProvider
-
-### themes
-
-- themes.light
-- themes.dark
-
-## dev setup
-
-- clone ec.admin repo
-- run "yarn link" in ec.admin root
-- go to other project (e.g. light.react-admin)
-- run "yarn link ec.admin"
-- run yarn start
-- After every change in ec.admin, the "yarn build" needs to run. TODO: create watcher script
-- problem: yarn build needs node_modules to build, but the other projects will be confused by node_modules inside a package (two react versions). As a current workaround, I created the hackybuild.js script which temporarily renames node_modules to \_node_modules ... dont tell anyone
+Currently, the [FilterList sidebar](https://marmelab.com/react-admin/List.html#the-filterlist-sidebar) only supports one selection per property (and does not play well with object values). It would be good to have a more sophisticated FitlerList sidebar. Maybe this will also be implemented by react-admin in the future, as the FilterList sidebar is relatively new.. _but maybe only for enterprise edition_
