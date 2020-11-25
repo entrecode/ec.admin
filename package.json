@@ -20,7 +20,7 @@
     "deck": "mdx-deck demo/deck.mdx",
     "demo": "parcel demo/index.html --https --open",
     "doc": "cd doc && yarn start",
-    "deploy-doc": "cd doc && yarn deploy"
+    "deploy-doc": "cd doc && GIT_USER=felixroos yarn deploy"
   },
   "peerDependencies": {
     "react-admin": "^3.9.5",
