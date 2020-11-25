@@ -19,7 +19,8 @@
     "build": "tsc --build \"./tsconfig.json\"",
     "deck": "mdx-deck demo/deck.mdx",
     "demo": "parcel demo/index.html --https --open",
-    "doc": "cd doc && yarn start"
+    "doc": "cd doc && yarn start",
+    "deploy-doc": "cd doc && yarn deploy"
   },
   "peerDependencies": {
     "react-admin": "^3.9.5",
