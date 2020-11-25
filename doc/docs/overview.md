@@ -1,0 +1,90 @@
+---
+id: overview
+title: Overview
+slug: /overview
+---
+
+![dependencies](/img/dependencygraph.svg)
+
+## What?
+
+- "entrecode flavoured react-admin components"
+- potential ec.components replacement for newer admin projects
+- using react-admin + material-ui + ec.sdk
+
+## Why?
+
+- the wheel is already invented
+- quality grows with development time
+  - [ec.components](https://github.com/entrecode/ec.components): 1-4 contributors, 2,6k commits
+  - [x.ui](https://github.com/entrecode/x.ui): 0-3 contributors, 1,1k commits
+  - [react-admin](https://github.com/marmelab/react-admin): ~400 contributors, ~9k commits
+  - [material-ui](https://github.com/mui-org/material-ui): ~2k contributors, ~15k commits
+
+## state of ec.components
+
+- "feature complete"
+- not actively maintained ☠🐎
+  - no angular 10 support
+  - not using current best practices
+  - x.ui not maintained at all
+- not easy to get into, sometimes a blackbox 🕋
+- pretty ambitious project 🏋
+  - ui component library
+  - css framework
+  - datamanager component library
+- nevertheless a good project to learn many lessons
+
+## angular is bad
+
+- dirty checking does not scale without manual adjustments
+- `cdr.markForCheck()` = `$scope.digest()` in new clothes
+- the "angular way" does not add value to modern es6
+  - dependency injection
+  - module definitions
+  - custom template DSL
+  - too much boilerplate code
+  - too much API
+
+## react is better
+
+- less "API surface area" <!-- https://www.youtube.com/watch?v=4anAwXYqLG8-->
+  - just [watch this](https://www.youtube.com/watch?v=4anAwXYqLG8)
+- virtual DOM + immutability = really no need to markForCheck
+- JSX = templating without extra DSL
+- easier to learn
+- easier to integrate
+
+## react-admin
+
+<small style={{ width: '50%' }}>
+"A frontend Framework for building B2B applications running in the browser on top of REST/GraphQL APIs, using ES6,
+React and Material Design"
+</small>
+
+- made by the same team that did once [ng-admin](https://github.com/marmelab/ng-admin) (after it was abandoned)
+- can be used with any API
+- "Batteries Included But Removable"
+
+## material-ui
+
+<small style={{ width: '50%' }}>
+"React components for faster and easier web development. Build your own design system, or start with Material Design."
+</small>
+
+- included in react-admin
+- all ec.components ui elements already existing there
+
+## Alternatives
+
+| @ec.components                                                                                                                                                |                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [/data](https://github.com/entrecode/ec.components/tree/master/packages/data) + [/core](https://github.com/entrecode/ec.components/tree/master/packages/core) | [react-admin](https://github.com/marmelab/react-admin)                                                                                                                            |
+| [/ui](https://github.com/entrecode/ec.components/tree/master/packages/ui) + [/style](https://github.com/entrecode/ec.components/tree/master/packages/style)   | [material-ui](https://material-ui.com/)                                                                                                                                           |
+| [/ace](https://github.com/entrecode/ec.components/tree/master/packages/ace)                                                                                   | [ra-input-rich-text](https://github.com/marmelab/react-admin/tree/master/packages/ra-input-rich-text)                                                                             |
+| [/calendar](https://github.com/entrecode/ec.components/tree/master/packages/calendar#eccomponentscalendar)                                                    | [@material-ui/pickers](@material-ui/pickers)                                                                                                                                      |
+| [/location](https://github.com/entrecode/ec.components/tree/master/packages/location)                                                                         | [react-admin-google-maps](https://github.com/FusionWorks/react-admin-google-maps)                                                                                                 |
+| [/medium-editor](https://github.com/entrecode/ec.components/tree/master/packages/medium-editor)                                                               | [react-medium-editor](https://github.com/wangzuo/react-medium-editor)                                                                                                             |
+| [/tinymce](https://github.com/entrecode/ec.components/tree/master/packages/tinymce)                                                                           | [ra-tinymce-input](https://github.com/Whitebolt/ra-tinymce-input#readme) or [ra-input-rich-text](https://github.com/marmelab/react-admin/tree/master/packages/ra-input-rich-text) |
+
+---
