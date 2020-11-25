@@ -9,6 +9,7 @@ module.exports = {
   organizationName: 'entrecode', // Usually your GitHub org/user name.
   projectName: 'ec.admin', // Usually your repo name.
   themeConfig: {
+    sidebarCollapsible: false,
     navbar: {
       title: 'ec.admin',
       logo: {
@@ -16,12 +17,12 @@ module.exports = {
         src: 'img/ec_logo.png',
       },
       items: [
-        {
+        /* {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
-        },
+        }, */
         /* {to: 'blog', label: 'Blog', position: 'left'}, */
         {
           href: 'https://github.com/entrecode/ec.admin',
@@ -32,7 +33,8 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      links: [/* 
+      links: [
+        /* 
         {
           title: 'Docs',
           items: [
@@ -76,7 +78,8 @@ module.exports = {
             },
           ],
         },
-       */],
+       */
+      ],
       copyright: `Copyright © ${new Date().getFullYear()} entrecode.`,
     },
   },
@@ -87,14 +90,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/entrecode/ec.admin/edit/master/doc/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          editUrl: 'https://github.com/entrecode/ec.admin/edit/master/doc/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
