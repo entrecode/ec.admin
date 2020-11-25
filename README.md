@@ -2,14 +2,28 @@
 
 entrecode flavoured components for [react-admin](https://marmelab.com/react-admin/).
 
-## [Documentation](https://entrecode.github.io/ec.admin/docs/) 
+## [Documentation](https://entrecode.github.io/ec.admin/docs/)
+
+```sh
+npm run doc # run docs locally
+npm run deploy-doc # deploy to gh-pages
+```
 
 ## Demo
 
-The demo lives in /demo. It is a simple project that runs with parcel:
+The demo lives in /demo:
 
 ```sh
 npm run demo
+```
+
+## Build & Publish
+
+```sh
+npm run clean # remove lib
+npm run build # build lib
+npm publish # publish version => also make release via gitflow
+# TODO: add script that runs above + makes git release
 ```
 
 ## Presentation
