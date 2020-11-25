@@ -292,12 +292,10 @@ Also, the more generic Resources could be supported. This would enable potential
 
 Currently, the [FilterList sidebar](https://marmelab.com/react-admin/List.html#the-filterlist-sidebar) only supports one selection per property (and does not play well with object values). It would be good to have a more sophisticated FitlerList sidebar. Maybe this will also be implemented by react-admin in the future, as the FilterList sidebar is relatively new.. _but maybe only for enterprise edition_
 
-### Add Proper Demo for Development
+### Demo
 
-For faster development, it would be good to have a demo that is not part of the build.
-I tried working with symlinks but this sucks. Why?
+The demo lives in /demo. It is a simple project that runs with parcel:
 
-- need to build typescript on every save
-- need ec.admin/node_modules to run ts build
-- => this will break the project where ec.admin is symlinked
-- for now, I created the hackybuild.js script which temporarily renames node_modules to \_node_modules ... dont tell anyone
+```sh
+npm run demo
+```
