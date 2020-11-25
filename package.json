@@ -18,7 +18,8 @@
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.json\"",
     "deck": "mdx-deck demo/deck.mdx",
-    "demo": "parcel demo/index.html --https --open"
+    "demo": "parcel demo/index.html --https --open",
+    "doc": "cd doc && yarn start"
   },
   "peerDependencies": {
     "react-admin": "^3.9.5",
