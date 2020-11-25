@@ -1,8 +1,8 @@
 module.exports = {
   title: 'ec.admin',
   tagline: 'entrecode flavoured components for react-admin.',
-  url: 'https://github.com/entrecode/ec.admin',
-  baseUrl: '/',
+  url: 'https://entrecode.github.io',
+  baseUrl: '/ec.admin/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'https://entrecode.de/de/favicon.ico',
