@@ -1,8 +1,8 @@
 import React from 'react';
 import { Create, SimpleForm, Loading } from 'react-admin';
-import { useFieldConfig } from './useFields';
-import { TypeInput } from './inputs/TypeInput';
-import { inputProps } from './inputs/inputProps';
+import { useFieldConfig } from '../hooks/useFields';
+import { TypeInput } from '../inputs/TypeInput';
+import { inputProps } from '../inputs/inputProps';
 
 export function EntryCreate(props) {
   const fieldConfig = useFieldConfig(props.resource);

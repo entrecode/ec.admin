@@ -1,8 +1,8 @@
 import React from 'react';
 import { Show, SimpleShowLayout, Loading } from 'react-admin';
-import { useFields } from './useFields';
-import { TypeField } from './fields/TypeField';
-import { fieldProps } from './fields/fieldProps';
+import { useFields } from '../hooks/useFields';
+import { TypeField } from '../fields/TypeField';
+import { fieldProps } from '../fields/fieldProps';
 // import { EntryTitle } from './inputs/EntryTitle';
 
 export function EntryShow(props) {

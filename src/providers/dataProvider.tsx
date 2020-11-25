@@ -1,10 +1,11 @@
 import { PublicAPI } from 'ec.sdk';
-import { isSortable, isFilterable } from './types';
-import { pick, getFormData } from './helpers';
+import { isSortable, isFilterable } from '../types';
+import { pick, getFormData } from '../helpers';
+import { environment } from 'ec.sdk/lib/Core';
 
 // implements a custom data provider for ec.sdk
 // see https://marmelab.com/react-admin/DataProviders.html
-export default async (datamanagerID, env = 'stage', ecUser = true) => {
+export default async (datamanagerID, env: environment = 'stage', ecUser = true) => {
   const api = new PublicAPI(datamanagerID, env, ecUser);
   const systemFields = ['id', /* 'creator', */ '_created', '_modified', '_entryTitle'];
   return {

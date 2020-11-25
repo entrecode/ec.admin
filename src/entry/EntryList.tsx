@@ -1,11 +1,11 @@
 import React from 'react';
 import { List, Loading /* , Datagrid */ } from 'react-admin';
 import CustomizableDatagrid from 'ra-customizable-datagrid';
-import { TypeField } from './fields/TypeField';
+import { TypeField } from '../fields/TypeField';
 // https://github.com/fizix-io/ra-customizable-datagrid#configuration
-import { useFields } from './useFields';
-import { fieldProps } from './fields/fieldProps';
-import { EntryListFilter } from './filters/EntryListFilter';
+import { useFields } from '../hooks/useFields';
+import { fieldProps } from '../fields/fieldProps';
+import { EntryListFilter } from '../filters/EntryListFilter';
 
 // generic entry list
 export const EntryList = (props) => {

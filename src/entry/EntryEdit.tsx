@@ -1,8 +1,8 @@
 import React from 'react';
 import { Edit, SimpleForm, Loading } from 'react-admin';
-import { useFields } from './useFields';
-import { TypeInput } from './inputs/TypeInput';
-import { inputProps } from './inputs/inputProps';
+import { useFields } from '../hooks/useFields';
+import { TypeInput } from '../inputs/TypeInput';
+import { inputProps } from '../inputs/inputProps';
 // import { EntryTitle } from './inputs/EntryTitle';
 
 export function EntryEdit(props) {

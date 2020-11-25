@@ -18,7 +18,7 @@
     "prebuild": "yarn clean",
     "build": "tsc --build \"./tsconfig.json\"",
     "deck": "mdx-deck demo/deck.mdx",
-    "demo": "parcel demo/index.html --https"
+    "demo": "parcel demo/index.html --https --open"
   },
   "peerDependencies": {
     "react-admin": "^3.9.5",
@@ -27,11 +27,13 @@
   },
   "devDependencies": {
     "@code-surfer/themes": "^3.1.1",
+    "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "code-surfer": "^3.1.1",
     "ec.sdk": "^0.22.2",
+    "jest": "^26.6.3",
     "mdx-deck": "4.0.0",
     "parcel": "^1.12.4",
     "ra-customizable-datagrid": "^1.1.0",
