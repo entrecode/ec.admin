@@ -52,11 +52,15 @@ export default App;
 
 ### [useFields](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
 
-Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified".
-Can be used as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter.
-Also see [custom Edit View](./custom-form#custom-edit).
+Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified" if second param is false. Intended to be used with fieldProps / inputProps or as fieldConfig prop of EntryListFilter.
+For usage examples, see [custom Form](./custom-form).
+
+```js
+const fields = useFields(props.resource); // fieldConfig with system fields
+const fields = useFields(props.resource, false); // fieldConfig without system fields
+// fields contains { fieldConfig, defaultColumns }
+```
 
 ### [useFieldConfig](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
 
-Returns fieldConfig for given model. Does not append system fields.
-Can be used e.g. for a [custom Create View](./custom-form#custom-create).
+Returns just fieldConfig for given model. Does not add system fields or defaultColumns. Used by useFields.

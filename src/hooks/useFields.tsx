@@ -1,33 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useApi } from './useApi';
-
-// resolves fieldConfig of given model
-export function useFieldConfig(model) {
-  const api = useApi();
-  const [fieldConfig, setFieldConfig] = useState<object | null>(null);
-  useEffect(() => {
-    if (api && model) {
-      api.getFieldConfig(model).then(setFieldConfig);
-    }
-  }, [api, model]);
-  return fieldConfig;
-}
+import { useFieldConfig } from './useFieldConfig';
 
 /* 
-Helper to resolve fieldConfig for entry lists.
-Use this together with fieldProps to build custom lists without hassle.
-See CardList for an example.
+Helper to resolve fieldConfig for entry lists or forms.
+Use this together with fieldProps tor inputProps o build custom lists or forms without hassle.
 */
-export function useFields(model) {
+export function useFields(model: string, excludeSystemFields?: boolean) {
   let fieldConfig = useFieldConfig(model);
-  fieldConfig = fieldConfig
-    ? {
-        id: { type: 'text' },
-        ...fieldConfig,
-        _created: { type: 'datetime' },
-        _modified: { type: 'datetime' },
-      }
-    : null;
+  if (!excludeSystemFields) {
+    fieldConfig = fieldConfig
+      ? {
+          id: { type: 'text' },
+          ...fieldConfig,
+          _created: { type: 'datetime' },
+          _modified: { type: 'datetime' },
+        }
+      : null;
+  }
   return {
     fieldConfig,
     defaultColumns: Object.keys(fieldConfig || {}).slice(1, 5),

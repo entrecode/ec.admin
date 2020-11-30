@@ -46,10 +46,10 @@ Implementing a custom create form is similar to the above example:
 ```js
 import React from 'react';
 import { Create, SimpleForm, Loading, TextInput } from 'react-admin';
-import { useFieldConfig, inputProps, TypeInput } from 'ec.admin';
+import { useFields, inputProps, TypeInput } from 'ec.admin';
 
 export function MuffinCreate(props) {
-  const fieldConfig = useFieldConfig(props.resource);
+  const { fieldConfig } = useFields(props.resource, true);
   if (!fieldConfig) {
     return <Loading />;
   }
@@ -73,8 +73,9 @@ To use it, we can override the create prop on the target [Resource](https://marm
 
 The implementation is quite similar to a custom Edit. The differences are:
 
-- field config is resolved using [useFieldConfig](./helpers#usefieldconfig) which omits the system fields (id, created, modified, creator).
+- [useFields](./helpers#usefields) is used with excludeSystemFields true (omits id, created, modified, creator).
 - third param of inputProps is true (ignores readonly fields)
+- uses Create instead of Edit
 
 ## Used APIs
 
@@ -83,7 +84,6 @@ The examples use the following ec.admin APIs:
 - [TypeInput](./components#typeinput)
 - [inputProps](./helpers#inputprops)
 - [useFields](./hooks#usefields)
-- [useFieldConfig](./hooks#usefieldconfig)
 
 Note that the "name" field just uses a plain [TextInput](https://marmelab.com/react-admin/Inputs.html#textinput). When going that route, you have to make sure that the component can handle the field's value. The commented out version of it shows how the field would could be implemented without inputProps. If going that route, you have to check set props:
 
