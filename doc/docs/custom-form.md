@@ -46,7 +46,7 @@ Implementing a custom create form is similar to the above example:
 ```js
 import React from 'react';
 import { Create, SimpleForm, Loading, TextInput } from 'react-admin';
-import { useFieldConfig, inputProps, TypeInput } from '../lib';
+import { useFieldConfig, inputProps, TypeInput } from 'ec.admin';
 
 export function MuffinCreate(props) {
   const fieldConfig = useFieldConfig(props.resource);
