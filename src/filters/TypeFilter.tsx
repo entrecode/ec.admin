@@ -11,7 +11,7 @@ export function TypeFilter({ type, source, ...props }) {
   if (['id', '_id'].includes(source)) {
     return <TextInput {...props} source={`${source}.exact`} />;
   }
-  if (['text', 'url', 'formattedText'].includes(type)) {
+  if (['text', 'url', 'formattedText', 'email'].includes(type)) {
     return <TextSearch {...props} source={source} />;
   }
   if (type === 'datetime') {

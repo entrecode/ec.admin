@@ -19,7 +19,7 @@ export function TypeField({ type, ...props }) {
   if (type === 'text') {
     return <TypographyField {...props} />;
   }
-  if (type === 'url') {
+  if (type === 'url' || type === 'email') {
     return <TypographyField {...props} />;
   }
   if (['number', 'decimal'].includes(type)) {
