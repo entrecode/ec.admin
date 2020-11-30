@@ -71,7 +71,7 @@ Automatically populates input type specific data. Expects fieldConfig as obtaine
 <TextInput {...inputProps('name', fieldConfig)} />
 ```
 
-## [useFields](https://github.com/entrecode/ec.admin/blob/master/src/useFields.tsx)
+## [useFields](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
 
 Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified".
 Intended for usage as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter. Example:

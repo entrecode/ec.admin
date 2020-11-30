@@ -7,7 +7,7 @@ slug: /provider-hooks
 
 Using hooks, you can obtain the following providers:
 
-### [useDatamanager](https://github.com/entrecode/ec.admin/blob/master/src/useDatamanager.tsx)
+### [useDatamanager](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useDatamanager.tsx)
 
 ```ts
 useDatamanager(datamanagerID, env?, ecUser?)
@@ -15,15 +15,15 @@ useDatamanager(datamanagerID, env?, ecUser?)
 
 
 
-Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [PublicAPI](https://entrecode.github.io/ec.sdk/#publicapi). See "Get Started" for usage.
+Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [PublicAPI](https://entrecode.github.io/ec.sdk/#publicapi). See [Getting Started](./getting-started) for usage.
 
-### [useSession](https://github.com/entrecode/ec.admin/blob/master/src/useSession.tsx)
+### [useSession](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useSession.tsx)
 
 ```ts
 useSession(env?, clientID?) 
 ```
 
-Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider) that internally uses [Session](https://entrecode.github.io/ec.sdk/#session) and [Accounts](https://entrecode.github.io/ec.sdk/#accounts). See "Get Started" for usage.
+Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider) that internally uses [Session](https://entrecode.github.io/ec.sdk/#session) and [Accounts](https://entrecode.github.io/ec.sdk/#accounts). See [Getting Started](./getting-started) for usage.
 
 ### Example
 

@@ -64,4 +64,4 @@ After saving, and logging in with your ec.account (stage), you should see the lo
 
 You are now ready to customize the admin, using ec.admin as an adapter between ec.sdk and react-admin.
 
-For inspiration, you should check out the demo folder or [light.react-admin](https://github.com/entrecode/light.react-admin/blob/develop/src/App.tsx).
+For inspiration, you should check out the [demo folder](https://github.com/entrecode/ec.admin/tree/develop/demo) or [light.react-admin](https://github.com/entrecode/light.react-admin/blob/develop/src/App.tsx).
