@@ -2,7 +2,7 @@
 id: getting-started
 title: Getting Started
 sidebar_label: Getting Started
-slug: /
+slug: /getting-started
 ---
 
 This is how you create a new project with ec.admin.
@@ -64,4 +64,4 @@ After saving, and logging in with your ec.account (stage), you should see the lo
 
 You are now ready to customize the admin, using ec.admin as an adapter between ec.sdk and react-admin.
 
-For inspiration, you should check out [light.react-admin](https://github.com/entrecode/light.react-admin/blob/develop/src/App.tsx), where ec.admin is already in use.
+For inspiration, you should check out the demo folder or [light.react-admin](https://github.com/entrecode/light.react-admin/blob/develop/src/App.tsx).

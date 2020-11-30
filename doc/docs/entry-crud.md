@@ -63,4 +63,7 @@ If you want to replace a generic CRUD view with a custom component, you can over
 
 This will render `MuffinList` as custom list view. Of course, this is possible with any crud prop.
 
-The easiest way to implement a custom view is to copy the generic component and adjust the parts that should be custom. To understand how the different views work, read on.
+The easiest way to implement a custom view is to copy the generic component and adjust the parts that should be custom. See also:
+
+- [Custom List](./custom-list)
+- [Custom Form](./custom-form)
