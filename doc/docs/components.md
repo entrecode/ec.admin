@@ -6,7 +6,7 @@ slug: /components
 
 ## Type Components
 
-ec.admin comes with prepacked implementations of [Field](https://marmelab.com/react-admin/Fields.html), [Input](https://marmelab.com/react-admin/Inputs.html) and [Filter](https://marmelab.com/react-admin/List.html#filtering-the-list) components that take care of each [ec entry field type](https://doc.entrecode.de/data_manager/#field-data-types).
+ec.admin comes with prepacked implementations of [Field](https://marmelab.com/react-admin/Fields.html), [Input](https://marmelab.com/react-admin/Inputs.html) and [Filter](https://marmelab.com/react-admin/List.html#filtering-the-list) components that take care of each [ec entry field type](https://doc.entrecode.de/data_manager/#types).
 
 ### [TypeField](https://github.com/entrecode/ec.admin/blob/master/src/fields/TypeField.tsx)
 
