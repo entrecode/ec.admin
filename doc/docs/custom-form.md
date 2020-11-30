@@ -80,10 +80,10 @@ The implementation is quite similar to a custom Edit. The differences are:
 
 The examples use the following ec.admin APIs:
 
-- [TypeInput](./helpers#typeinput)
+- [TypeInput](./components#typeinput)
 - [inputProps](./helpers#inputprops)
-- [useFields](./helpers#usefields)
-- [useFieldConfig](./helpers#usefieldconfig)
+- [useFields](./hooks#usefields)
+- [useFieldConfig](./hooks#usefieldconfig)
 
 Note that the "name" field just uses a plain [TextInput](https://marmelab.com/react-admin/Inputs.html#textinput). When going that route, you have to make sure that the component can handle the field's value. The commented out version of it shows how the field would could be implemented without inputProps. If going that route, you have to check set props:
 

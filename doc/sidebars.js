@@ -1,7 +1,7 @@
 module.exports = {
   someSidebar: {
     Tutorial: ['overview', 'getting-started', 'localization', 'theming'],
-    API: ['provider-hooks', 'entry-crud', 'helpers'],
+    API: ['hooks', 'entry-crud', 'components', 'helpers'],
     Guides: ['custom-list', 'custom-form', 'faq'],
   },
 };

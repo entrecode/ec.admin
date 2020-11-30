@@ -1,9 +1,10 @@
 ---
-id: provider-hooks
-title: Provider Hooks
-sidebar_label: Provider Hooks
-slug: /provider-hooks
+id: hooks
+title: Hooks
+slug: /hooks
 ---
+
+## Provider Hooks
 
 Using hooks, you can obtain the following providers:
 
@@ -46,3 +47,16 @@ const App = () => {
 };
 export default App;
 ```
+
+## Helper Hooks
+
+### [useFields](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
+
+Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified".
+Can be used as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter.
+Also see [custom Edit View](./custom-form#custom-edit).
+
+### [useFieldConfig](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
+
+Returns fieldConfig for given model. Does not append system fields.
+Can be used e.g. for a [custom Create View](./custom-form#custom-create).

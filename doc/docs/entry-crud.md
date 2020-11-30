@@ -1,10 +1,10 @@
 ---
 id: entry-crud
-title: Entries
+title: Entry CRUD
 slug: /entry-crud
 ---
 
-ec.admin comes with some components and helpers that make it easy to use react-admin with ec entries.
+These components and helpers make it easy to use react-admin with ec entries.
 
 ### [entryCrud](https://github.com/entrecode/ec.admin/blob/master/src/entryCrud.tsx)
 
