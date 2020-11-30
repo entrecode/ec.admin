@@ -1,8 +1,8 @@
 // https://marmelab.com/react-admin/Admin.html#customroutes
 import * as React from 'react';
 import { Route } from 'react-router-dom';
-import Foo from '../Foo';
-/* import Bar from './Bar';
-import Baz from './Baz'; */
+import WithListController from './WithListController';
+import Foo from './Foo';
+import WithQuery from './WithQuery';
 
-export default [<Route exact path="/foo" component={Foo} />];
+export default [<Route exact path="/custom-query" component={WithQuery} />,<Route exact path="/list-controller" component={WithListController} />, <Route exact path="/foo" component={Foo} />];

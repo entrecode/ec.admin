@@ -2,5 +2,9 @@
 import React from 'react';
 
 export default () => {
-  return <p>Hello Foo</p>;
+
+  return (
+      <p>Hello Foo</p>
+  );
 };
+

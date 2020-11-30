@@ -34,6 +34,20 @@ const Menu = ({ onMenuClick, logout }) => {
                 onClick={onMenuClick}
                 sidebarIsOpen={open}
             />
+            <MenuItemLink
+                to="/list-controller"
+                primaryText="List Controller"
+                leftIcon={<LabelIcon />}
+                onClick={onMenuClick}
+                sidebarIsOpen={open}
+            />
+            <MenuItemLink
+                to="/custom-query"
+                primaryText="Custom Query"
+                leftIcon={<LabelIcon />}
+                onClick={onMenuClick}
+                sidebarIsOpen={open}
+            />
             {isXSmall && logout}
         </div>
     );
