@@ -5,4 +5,8 @@ import WithListController from './WithListController';
 import Foo from './Foo';
 import WithQuery from './WithQuery';
 
-export default [<Route exact path="/custom-query" component={WithQuery} />,<Route exact path="/list-controller" component={WithListController} />, <Route exact path="/foo" component={Foo} />];
+export default [
+  <Route exact path="/custom-query" component={WithQuery} />,
+  <Route exact path="/list-controller" component={WithListController} />,
+  <Route exact path="/foo" component={Foo} />,
+];
