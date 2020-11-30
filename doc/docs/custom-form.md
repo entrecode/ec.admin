@@ -1,12 +1,12 @@
 ---
 id: custom-form
-title: Custom Form
+title: Custom Forms
 slug: /custom-form
 ---
 
-Similar to lists, we can replace a generic EntryEdit / EntryCreate form with a custom one.
+Similar to lists, we can replace a generic EntryCreate / EntryEdit form with a custom [Create / Edit View](https://marmelab.com/react-admin/CreateEdit.html).
 
-## Example
+## Custom Edit
 
 Here's an example of a custom edit component:
 
@@ -39,13 +39,51 @@ To use it, we can override the edit prop on the target [Resource](https://marmel
 <Resource name={'muffin'} {...entryCrud} edit={MuffinEdit} />
 ```
 
+## Custom Create
+
+Implementing a custom create form is similar to the above example:
+
+```js
+import React from 'react';
+import { Create, SimpleForm, Loading, TextInput } from 'react-admin';
+import { useFields, inputProps, TypeInput } from 'ec.admin';
+
+export function MuffinCreate(props) {
+  const { fieldConfig } = useFields(props.resource, true);
+  if (!fieldConfig) {
+    return <Loading />;
+  }
+  const input = (property) => inputProps(property, fieldConfig, true);
+  return (
+    <Create {...props}>
+      <SimpleForm>
+        <TextInput {...input('name')} />
+        <TypeInput {...input('amazement_factor')} />
+      </SimpleForm>
+    </Create>
+  );
+}
+```
+
+To use it, we can override the create prop on the target [Resource](https://marmelab.com/react-admin/Resource.html):
+
+```jsx
+<Resource name={'muffin'} {...entryCrud} create={MuffinCreate} />
+```
+
+The implementation is quite similar to a custom Edit. The differences are:
+
+- [useFields](./hooks#usefields) is used with excludeSystemFields true (omits id, created, modified, creator).
+- third param of inputProps is true (ignores readonly fields)
+- uses Create instead of Edit
+
 ## Used APIs
 
-The example uses the following ec.admin APIs:
+The examples use the following ec.admin APIs:
 
-- [TypeInput](./helpers#typeinput)
+- [TypeInput](./components#typeinput)
 - [inputProps](./helpers#inputprops)
-- [useFields](./helpers#usefields)
+- [useFields](./hooks#usefields)
 
 Note that the "name" field just uses a plain [TextInput](https://marmelab.com/react-admin/Inputs.html#textinput). When going that route, you have to make sure that the component can handle the field's value. The commented out version of it shows how the field would could be implemented without inputProps. If going that route, you have to check set props:
 
@@ -53,11 +91,3 @@ Note that the "name" field just uses a plain [TextInput](https://marmelab.com/re
 - options.disabled should be true if the field is readOnly
 
 Of course, the component that is used for a field can also be custom. For more info see [Writing Your Own Input Component](https://marmelab.com/react-admin/Inputs.html#writing-your-own-input-component).
-
-## Create
-
-Implementing a custom create form is similar to the above example, except
-
-- you should get the field config from [useFieldConfig](./helpers#usefieldconfig) which omits the system fields (id, created, modified, creator).
-- you have to override Resource.create instead of Resource.edit
-- When in doubt, refer to EntryCreate component.

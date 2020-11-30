@@ -10,6 +10,18 @@ const features = [
   {
     title: (
       <>
+        <a href="https://doc.entrecode.de/data_manager/" target="_blank">
+          Data Manager
+        </a>{' '}
+        inside
+      </>
+    ),
+    imageUrl: 'https://entrecode.de/de/assets/ec-logo.svg',
+    description: <></>,
+  },
+  {
+    title: (
+      <>
         Powered by{' '}
         <a href="https://marmelab.com/react-admin/" target="_blank">
           react-admin
@@ -36,7 +48,7 @@ const features = [
 function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx('col col--6', styles.feature)}>
+    <div className={clsx('col col--4 center', styles.feature)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -58,7 +70,10 @@ function Home() {
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
-            <Link className={clsx('button button--secondary button--lg', styles.getStarted)} to={useBaseUrl('docs/')}>
+            <Link
+              className={clsx('button button--secondary button--lg', styles.getStarted)}
+              to={useBaseUrl('docs/getting-started')}
+            >
               Get Started
             </Link>
           </div>

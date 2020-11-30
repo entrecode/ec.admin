@@ -1,10 +1,10 @@
 ---
 id: entry-crud
-title: Entries
+title: Entry CRUD
 slug: /entry-crud
 ---
 
-ec.admin comes with some components and helpers that make it easy to use react-admin with ec entries.
+These components and helpers make it easy to use react-admin with ec entries.
 
 ### [entryCrud](https://github.com/entrecode/ec.admin/blob/master/src/entryCrud.tsx)
 
@@ -20,7 +20,6 @@ contains:
 - create: [EntryCreate](https://github.com/entrecode/ec.admin/blob/master/src/EntryCreate.tsx)
 - edit: [EntryEdit](https://github.com/entrecode/ec.admin/blob/master/src/EntryEdit.tsx)
 - show: [EntryShow](https://github.com/entrecode/ec.admin/blob/master/src/EntryShow.tsx)
-
 
 ### [EntryList](https://github.com/entrecode/ec.admin/blob/master/src/EntryList.tsx)
 
@@ -63,4 +62,7 @@ If you want to replace a generic CRUD view with a custom component, you can over
 
 This will render `MuffinList` as custom list view. Of course, this is possible with any crud prop.
 
-The easiest way to implement a custom view is to copy the generic component and adjust the parts that should be custom. To understand how the different views work, read on.
+The easiest way to implement a custom view is to copy the generic component and adjust the parts that should be custom. See also:
+
+- [Custom List](./custom-list)
+- [Custom Form](./custom-form)

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Create, SimpleForm, Loading } from 'react-admin';
-import { useFieldConfig } from '../hooks/useFields';
+import { useFields } from '../hooks/useFields';
 import { TypeInput } from '../inputs/TypeInput';
 import { inputProps } from '../inputs/inputProps';
 
 export function EntryCreate(props) {
-  const fieldConfig = useFieldConfig(props.resource);
+  const { fieldConfig } = useFields(props.resource, true);
   if (!fieldConfig) {
     return <Loading />;
   }

@@ -4,7 +4,7 @@ title: Custom List
 slug: /custom-list
 ---
 
-It's easy to replace a generic EntryList with a custom one.
+It's easy to replace a generic EntryList with a custom [List View](https://marmelab.com/react-admin/List.html).
 
 ## Example
 
@@ -46,9 +46,9 @@ To use it, we can override the list prop on the target [Resource](https://marmel
 
 The example uses the following ec.admin APIs:
 
-- [TypeField](./helpers#typefield)
+- [TypeField](./components#typefield)
 - [fieldProps](./helpers#fieldprops)
-- [useFields](./helpers#usefields)
+- [useFields](./hooks#usefields)
 
 Note that the "description" field just uses a plain [TextField](https://marmelab.com/react-admin/Fields.html#textfield). When going that route, you have to make sure that the component can handle the field's value. The commented out version of it shows how the field would could be implemented without fieldProps. If going that route, you should at least set those props:
 

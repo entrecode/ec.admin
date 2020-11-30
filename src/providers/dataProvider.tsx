@@ -11,7 +11,7 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
   return {
     api,
     getList: async (model, params) => {
-      console.log('get list', params);
+      // console.log('get list', params);
       try {
         let {
           sort: { order, field },
