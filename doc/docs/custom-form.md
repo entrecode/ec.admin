@@ -73,7 +73,7 @@ To use it, we can override the create prop on the target [Resource](https://marm
 
 The implementation is quite similar to a custom Edit. The differences are:
 
-- [useFields](./helpers#usefields) is used with excludeSystemFields true (omits id, created, modified, creator).
+- [useFields](./hooks#usefields) is used with excludeSystemFields true (omits id, created, modified, creator).
 - third param of inputProps is true (ignores readonly fields)
 - uses Create instead of Edit
 
