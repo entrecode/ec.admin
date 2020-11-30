@@ -73,18 +73,10 @@ Automatically populates input type specific data. Expects fieldConfig as obtaine
 ## [useFields](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
 
 Returns fieldConfig for given model. Appends system fields "id", "\_created" and "\_modified".
-Intended for usage as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter. Example:
+Can be used as second argument for fieldProps / inputProps or as fieldConfig prop of EntryListFilter.
+Also see [custom Edit View](./custom-form#custom-edit).
 
-<!-- TODO: rename to useModelConfig? useFields maybe confusing as it can be used with fields and inputs. -->
+## [useFieldConfig](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useFields.tsx)
 
-```js
-export const MyList = (props) => {
-  let { fieldConfig, defaultColumns } = useFields(props.resource);
-  if (!fieldConfig) {
-    return <Loading />;
-  }
-  /*
-    do something with fieldConfig
-  */
-};
-```
+Returns fieldConfig for given model. Does not append system fields.
+Can be used e.g. for a [custom Create View](./custom-form#custom-create).

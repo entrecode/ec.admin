@@ -4,7 +4,7 @@ title: Custom List
 slug: /custom-list
 ---
 
-It's easy to replace a generic EntryList with a custom one.
+It's easy to replace a generic EntryList with a custom [List View](https://marmelab.com/react-admin/List.html).
 
 ## Example
 
