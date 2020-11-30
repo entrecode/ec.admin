@@ -21,7 +21,6 @@ contains:
 - edit: [EntryEdit](https://github.com/entrecode/ec.admin/blob/master/src/EntryEdit.tsx)
 - show: [EntryShow](https://github.com/entrecode/ec.admin/blob/master/src/EntryShow.tsx)
 
-
 ### [EntryList](https://github.com/entrecode/ec.admin/blob/master/src/EntryList.tsx)
 
 Implements generic [List](https://marmelab.com/react-admin/List.html) for entries.

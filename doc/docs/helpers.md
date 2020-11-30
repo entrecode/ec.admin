@@ -4,7 +4,6 @@ title: Helpers
 slug: /helpers
 ---
 
-
 ## Field vs Input vs Filter
 
 To understand the naming of the following helpers, it is important to understand those basic three react-admin's component categories:
@@ -89,5 +88,3 @@ export const MyList = (props) => {
   */
 };
 ```
-
-

@@ -13,14 +13,12 @@ Using hooks, you can obtain the following providers:
 useDatamanager(datamanagerID, env?, ecUser?)
 ```
 
-
-
 Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [PublicAPI](https://entrecode.github.io/ec.sdk/#publicapi). See [Getting Started](./getting-started) for usage.
 
 ### [useSession](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useSession.tsx)
 
 ```ts
-useSession(env?, clientID?) 
+useSession(env?, clientID?)
 ```
 
 Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider) that internally uses [Session](https://entrecode.github.io/ec.sdk/#session) and [Accounts](https://entrecode.github.io/ec.sdk/#accounts). See [Getting Started](./getting-started) for usage.
