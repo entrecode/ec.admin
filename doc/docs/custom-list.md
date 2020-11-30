@@ -13,8 +13,8 @@ Here's an example of a custom list component:
 ```js
 import React from 'react';
 import { List, Loading, Datagrid, TextField } from 'react-admin';
-import { TypeField, useFields, fieldProps } from '../lib';
-import { BakerField } from '../lib';
+import { TypeField, useFields, fieldProps } from 'ec.admin';
+import { BakerField } from './BakerField';
 
 export const MuffinList = (props) => {
   let { fieldConfig } = useFields(props.resource);

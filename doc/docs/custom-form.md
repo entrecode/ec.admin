@@ -13,7 +13,7 @@ Here's an example of a custom edit component:
 ```js
 import React from 'react';
 import { Edit, SimpleForm, Loading, TextInput } from 'react-admin';
-import { useFields, inputProps, TypeInput } from '../lib';
+import { useFields, inputProps, TypeInput } from 'ec.admin';
 
 export function MuffinEdit(props) {
   const { fieldConfig } = useFields(props.resource);
