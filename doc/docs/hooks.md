@@ -24,6 +24,19 @@ useSession(env?, clientID?)
 
 Returns [authProvider](https://marmelab.com/react-admin/Admin.html#authprovider) that internally uses [Session](https://entrecode.github.io/ec.sdk/#session) and [Accounts](https://entrecode.github.io/ec.sdk/#accounts). See [Getting Started](./getting-started) for usage.
 
+### [useResources](https://github.com/entrecode/ec.admin/blob/master/src/hooks/useResources.tsx)
+
+```ts
+useResources(env?)
+```
+
+Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [DataManager](https://entrecode.github.io/ec.sdk/#datamanager) API.
+
+```
+const dataProvider = useResources('stage');
+
+```
+
 ### Example
 
 Typically, you would want to use the providers like this:
