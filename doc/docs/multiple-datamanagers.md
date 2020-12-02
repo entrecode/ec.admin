@@ -4,7 +4,7 @@ title: Multiple Datamanagers
 slug: /multiple-datamanagers
 ---
 
-As often required (e.g. clubapp.admin, light.admin), an admin should be able to work with multiple datamanagers at the same time. The current approach with [useDatamanager](../hooks#usedatamanager) does only support one datamanager.
+As often required (e.g. clubapp.admin, light.admin), an admin should be able to work with multiple datamanagers at the same time. The current approach with [useDatamanager](./hooks#usedatamanager) does only support one datamanager.
 
 ## Problem
 

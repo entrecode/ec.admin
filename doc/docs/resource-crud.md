@@ -4,7 +4,7 @@ title: Resource CRUD
 slug: /resource-crud
 ---
 
-As an alternative to [useDatamanager](../hooks#usedatamanager), which is only capable of providing entries of a single datamanager's models, we could use a different approach to resolve any [Resource](https://entrecode.github.io/ec.sdk/#resource). We can respresent any ec resource with a string and resolve it with [getResource](./get-resource).
+As an alternative to [useDatamanager](./hooks#usedatamanager), which is only capable of providing entries of a single datamanager's models, we could use a different approach to resolve any [Resource](https://entrecode.github.io/ec.sdk/#resource). We can respresent any ec resource with a string and resolve it with [getResource](./get-resource).
 
 ## Example
 
