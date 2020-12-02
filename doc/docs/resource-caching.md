@@ -35,15 +35,15 @@ So it would be good to have something like:
 ```js
 const api = new DataManager(env);
 const cachedDm = await api.resource('dataManager', '73538731-4ac3-4a1a-b3b5-e31d09e94d42');
-getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|test|dmAsset'.split('|'), {
+getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|test|dmAsset'.split('|'), api, {
   'dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42': cachedDm,
 });
-getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|uploads|dmAsset'.split('|'), {
+getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|uploads|dmAsset'.split('|'), api, {
   'dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42': cachedDm,
 });
 ```
 
-Here, the second argument is a "cache". The call structure could then be:
+Here, the third argument is a "cache". The call structure could then be:
 
 ```js
 // first call of getResource
@@ -62,12 +62,12 @@ Above, cachedDm was created from the outside, but getResource should also popula
 
 ```js
 const cache = {};
-getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|test|dmAsset', cache);
+getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|test|dmAsset', api, cache);
 // cache now contains keys:
 // - dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42
 // - dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|test
 
-getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|uploads|dmAsset', cache);
+getResource('dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|assetGroup|uploads|dmAsset', api, cache);
 // uses "dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42" from cache
 // cache now contains keys:
 // - dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42
