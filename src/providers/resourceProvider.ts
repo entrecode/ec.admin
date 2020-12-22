@@ -1,6 +1,7 @@
 import { DataManager } from 'ec.sdk';
 import { environment } from 'ec.sdk/lib/Core';
 import getResource from '../helpers/getResource';
+import dataProvider from './dataProvider';
 
 // see AppWithResources for usage example
 // implements a resource provider for ec.sdk
@@ -10,15 +11,24 @@ export default async (env: environment = 'stage') => {
   return {
     api,
     getList: async (resource, params) => {
-      console.log('getList', resource);
-      const { data, id } = await getResource(resource.split('|'), api);
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, api, env);
+        return dataProvider.getList(model, params);
+      }
+      const { data, id } = await getResource(path, api);
       const items = data.items.map(item => ({ ...item, id: item[id] }))
       return {
         data: items, total: data.total
       }
     },
     getOne: async (resource, params) => {
-      const { data, id } = await getResource([...resource.split('|'), params.id], api)
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, api, env);
+        return dataProvider.getOne(model, params);
+      }
+      const { data, id } = await getResource([...path, params.id], api)
       const item = { ...data, id: resource[id] };
       return { data: item }
     },
@@ -46,3 +56,14 @@ export default async (env: environment = 'stage') => {
     },
   };
 };
+
+async function getPublicData(path, api, env) {
+  if (!path.includes('entry')) {
+    throw new Error('can only getPublicDataProvider for resources with "entry" in it.')
+  }
+  path = path.slice(0, path.indexOf('entry')); // non public part
+  const { data: model } = await getResource(path, api); // get model (need title)
+  const dataManagerID = path[1]; // dataManager|xxxxx|model|yyyyy|entry
+  // now delegate to dataProvider
+  return [await dataProvider(dataManagerID, env, true), model.title];
+}

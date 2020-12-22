@@ -44,6 +44,8 @@ export default App;
 
 Here, we are using useResources + resource names that are a "path" of relations and ids.
 
+Also see AppWithResources (use it in index.js).
+
 ## What's missing
 
 - Only Guesser components used so far. As all resource properties (excluding models) are static We could add List, Edit, Create and Show components for existing resources. But this can also be implemented in "user land", when needed.
