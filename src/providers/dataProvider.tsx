@@ -11,6 +11,7 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
   return {
     api,
     getList: async (model, params) => {
+      // model = model.split('|').slice(-1).join('');
       // console.log('get list', params);
       try {
         let {
@@ -62,7 +63,8 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
       }
     },
     getOne: async (resource, params) => {
-      console.log('get one', resource, params);
+      // console.log('get one', resource, params, api);
+      // resource = resource.split('|').slice(-1).join('');
       try {
         let entry = await api.entry(resource, params.id);
         const fieldConfig = await api.getFieldConfig(entry.getModelTitle());

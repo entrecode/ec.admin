@@ -12661,6 +12661,11 @@ ra-language-english@^3.9.5:
   dependencies:
     ra-core "^3.9.5"
 
+ra-language-german@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/ra-language-german/-/ra-language-german-2.1.2.tgz#d183093d470ab499ece91838cb67222db88f2e4f"
+  integrity sha512-N+BaBP0z98ujaKVlAMIKTfWHgmTiWD8sPQrU5vA3+b5zY9U0mMB4VjvU8sQQPR7rZE0gsRgS/X4V6ycDtNL6iQ==
+
 ra-ui-materialui@^3.9.5:
   version "3.9.5"
   resolved "https://registry.npmjs.org/ra-ui-materialui/-/ra-ui-materialui-3.9.5.tgz#3085587e35a0ede73f0a260dc456d42af1aeb5fc"
