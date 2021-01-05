@@ -9,8 +9,9 @@ export default (env: 'stage' | 'live' = 'stage', clientID = 'rest') => {
     login: async ({ username, password }) => {
       const token = await session.login(username, password);
       accounts.setToken(token);
-      const { accountID, name /* , email */ } = await accounts.me();
-      userIdentity = { id: accountID, fullName: name };
+      const me = await accounts.me();
+      const { accountID, name /* , email */ } = me;
+      userIdentity = { id: accountID, fullName: name, me };
       session.timeToRefresh();
     },
     logout: async () => {
