@@ -76,7 +76,7 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
       }
     },
     getMany: async (model, params) => {
-      console.log('get many', model, params);
+      // console.log('get many', model, params);
       try {
         //console.log('getMany', model);
         const fieldConfig = await api.getFieldConfig(model);
