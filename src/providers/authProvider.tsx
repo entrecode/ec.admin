@@ -3,28 +3,34 @@ import { Session, Accounts } from 'ec.sdk';
 export default (env: 'stage' | 'live' = 'stage', clientID = 'rest') => {
   const session = new Session(env);
   const accounts = new Accounts(env);
-  let userIdentity; // https://marmelab.com/blog/2020/10/07/react-admin-october-update.html#user-menu-improvements
   session.setClientID(clientID);
+  async function requestUserIdentity() {
+    const me = await accounts.me();
+    const { accountID, name } = me;
+    return { id: accountID, fullName: name, me };
+  }
   return {
     login: async ({ username, password }) => {
       const token = await session.login(username, password);
       accounts.setToken(token);
-      const me = await accounts.me();
-      const { accountID, name /* , email */ } = me;
-      userIdentity = { id: accountID, fullName: name, me };
       session.timeToRefresh();
     },
     logout: async () => {
       await session.logout();
     },
     getIdentity: () => {
-      return userIdentity;
+      // https://marmelab.com/blog/2020/10/07/react-admin-october-update.html#user-menu-improvements
+      return requestUserIdentity();
     },
-    checkAuth: () => {
-      return session.hasToken() ? Promise.resolve() : Promise.reject(/* { redirectTo: 'no-access' } */);
+    checkAuth: async () => {
+      if (session.hasToken()) {
+        return Promise.resolve()
+      }
+      return Promise.reject(/* { redirectTo: 'no-access' } */);
     },
     checkError: (error) => Promise.resolve(),
-    getPermissions: (params) => Promise.resolve(),
-    /* getIdentity: () => Promise.resolve(), */
+    getPermissions: (params) => Promise.resolve()
   };
 };
+
+
