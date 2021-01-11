@@ -5,7 +5,7 @@ import { Filter } from 'react-admin';
 import { getFilterableProperties } from '../types';
 
 export const EntryListFilter = ({ fieldConfig, ...props }) => {
-  const input = (property) => inputProps(property, fieldConfig);
+  const input = (property) => inputProps(property, fieldConfig, false, props.resource);
   const filterableProperties = getFilterableProperties(fieldConfig);
   return (
     <Filter {...props}>

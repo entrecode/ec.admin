@@ -1,7 +1,7 @@
 import { DataManager } from 'ec.sdk';
 import { environment } from 'ec.sdk/lib/Core';
 import getResource from '../helpers/getResource';
-import dataProvider from './dataProvider';
+import getPublicDataProvider from '../helpers/getPublicDataProvider';
 
 // see AppWithResources for usage example
 // implements a resource provider for ec.sdk
@@ -13,7 +13,7 @@ export default async (env: environment = 'stage') => {
     getList: async (resource, params) => {
       const path = resource.split('|');
       if (path.includes('entry')) { // need PublicAPI
-        const [dataProvider, model] = await getPublicData(path, api, env);
+        const [dataProvider, model] = await getPublicData(path, env);
         return dataProvider.getList(model, params);
       }
       const { data, id } = await getResource(path, api);
@@ -25,7 +25,7 @@ export default async (env: environment = 'stage') => {
     getOne: async (resource, params) => {
       const path = resource.split('|');
       if (path.includes('entry')) { // need PublicAPI
-        const [dataProvider, model] = await getPublicData(path, api, env);
+        const [dataProvider, model] = await getPublicData(path, env);
         return dataProvider.getOne(model, params);
       }
       const { data, id } = await getResource([...path, params.id], api)
@@ -33,6 +33,13 @@ export default async (env: environment = 'stage') => {
       return { data: item }
     },
     getMany: async (resource, params) => {
+      console.log('getMany', resource);
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, env);
+        return dataProvider.getMany(model, params);
+      }
+      console.log('ALRAM', resource, params);
       return Promise.reject('method "getMany" not yet implemented!');
     },
     create: async (resource, { data }) => {
@@ -57,13 +64,16 @@ export default async (env: environment = 'stage') => {
   };
 };
 
-async function getPublicData(path, api, env) {
+async function getPublicData(path, env/* , api */) {
   if (!path.includes('entry')) {
     throw new Error('can only getPublicDataProvider for resources with "entry" in it.')
   }
-  path = path.slice(0, path.indexOf('entry')); // non public part
+  /* path = path.slice(0, path.indexOf('entry')); // non public part
   const { data: model } = await getResource(path, api); // get model (need title)
+  const modelTitle = model.title; */
   const dataManagerID = path[1]; // dataManager|xxxxx|model|yyyyy|entry
+  const modelTitle = path[3]; // dataManager|xxxxx|model|yyyyy|entry
   // now delegate to dataProvider
-  return [await dataProvider(dataManagerID, env, true), model.title];
+  const provider = await getPublicDataProvider(dataManagerID, env);
+  return [provider, modelTitle];
 }

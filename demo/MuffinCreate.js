@@ -7,7 +7,7 @@ export function MuffinCreate(props) {
   if (!fieldConfig) {
     return <Loading />;
   }
-  const input = (property) => inputProps(property, fieldConfig, true);
+  const input = (property) => inputProps(property, fieldConfig, true, props.resource);
   return (
     <Create {...props}>
       <SimpleForm>

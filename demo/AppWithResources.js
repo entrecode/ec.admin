@@ -2,6 +2,8 @@ import React from 'react';
 import { Admin, Resource, Loading, ListGuesser, EditGuesser } from 'react-admin';
 import { useSession, themes } from '../lib';
 import { useResources } from '../src/hooks/useResources';
+import { EntryList } from '../src/entry/EntryList';
+import { EntryEdit } from '../src/entry/EntryEdit';
 import { MuffinList } from './MuffinList';
 
 import polyglotI18nProvider from 'ra-i18n-polyglot';
@@ -55,21 +57,12 @@ const App = () => {
         list={ListGuesser}
         edit={EditGuesser}
       />
-      <Resource
-        name="dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|model|8234144e-38e2-414d-97c5-0faf1b671428|entry"
-        list={MuffinList}
-        edit={EditGuesser}
-      />
-      <Resource
-        name="dataManager|b2583313-bef9-457b-b1f0-e065960dc6c5|model|61d7583e-ca12-4697-8f6c-b59d325a5de6|entry"
-        list={ListGuesser}
-        edit={EditGuesser}
-      />
-      <Resource
-        name="dataManager|30ded721-f935-4fe9-9f2c-4a2952f7bfcb|model|061edd27-555f-4426-88ad-c49ce2e9328b|entry"
-        list={ListGuesser}
-        edit={EditGuesser}
-      />
+      <Resource name="dataManager|83cc6374|model|muffin|entry" list={MuffinList} edit={EntryEdit} />
+      <Resource name="dataManager|83cc6374|model|baker|entry" list={EntryList} edit={EntryEdit} />
+      <Resource name="dataManager|2b5c50c8|model|ld_order|entry" list={EntryList} edit={EntryEdit} />
+      <Resource name="dataManager|2b5c50c8|model|ld_order_item|entry" list={null} edit={EntryEdit} />
+      <Resource name="dataManager|04306d2a|model|ld_order|entry" list={EntryList} edit={EntryEdit} />
+      <Resource name="dataManager|04306d2a|model|ld_order_item|entry" list={null} edit={EntryEdit} />
     </Admin>
   ); // |19cc1f60-b39e-4ad7-bda7-8a8cb9ca4b7e|entry
 };

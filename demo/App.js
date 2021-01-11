@@ -1,6 +1,6 @@
 import React from 'react';
 import { Admin, Resource, Loading } from 'react-admin';
-import { useSession, useDatamanager, entryCrud, themes } from '../lib';
+import { useSession, useDatamanager, entryCrud, themes } from '../src';
 import customRoutes from './custom/routes';
 import Layout from './custom/Layout';
 // import { MuffinList } from './MuffinList'
