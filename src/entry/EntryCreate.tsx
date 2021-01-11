@@ -13,7 +13,7 @@ export function EntryCreate(props) {
     <Create {...props}>
       <SimpleForm>
         {Object.keys(fieldConfig).map((property) => (
-          <TypeInput {...inputProps(property, fieldConfig, true)} />
+          <TypeInput {...inputProps(property, fieldConfig, true, props.resource)} />
         ))}
       </SimpleForm>
     </Create>

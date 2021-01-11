@@ -15,11 +15,15 @@ export const EntryList = (props) => {
   }
   // defaultColumns={defaultColumns}
   return (
-    <List {...props} bulkActionButtons={false} filters={<EntryListFilter fieldConfig={fieldConfig} />}>
+    <List
+      {...props}
+      bulkActionButtons={false}
+      filters={<EntryListFilter fieldConfig={fieldConfig} resource={props.resource} />}
+    >
       <CustomizableDatagrid defaultColumns={defaultColumns} rowClick="edit">
         {/* <Datagrid rowClick="edit"> */}
         {Object.keys(fieldConfig).map((property) => (
-          <TypeField {...fieldProps(property, fieldConfig)} />
+          <TypeField {...fieldProps(property, fieldConfig, props.resource)} />
         ))}
         {/* </Datagrid> */}
       </CustomizableDatagrid>

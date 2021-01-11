@@ -15,7 +15,7 @@ export function EntryShow(props) {
     <Show {...props}>
       <SimpleShowLayout>
         {Object.keys(fieldConfig).map((property) => (
-          <TypeField {...fieldProps(property, fieldConfig)} />
+          <TypeField {...fieldProps(property, fieldConfig, props.resource)} />
         ))}
       </SimpleShowLayout>
     </Show>

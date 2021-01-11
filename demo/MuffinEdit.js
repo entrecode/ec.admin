@@ -7,7 +7,7 @@ export function MuffinEdit(props) {
   if (!fieldConfig) {
     return <Loading />;
   }
-  const input = (property) => inputProps(property, fieldConfig);
+  const input = (property) => inputProps(property, fieldConfig, false, props.resource);
   return (
     <Edit {...props}>
       <SimpleForm>

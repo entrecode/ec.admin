@@ -12,7 +12,7 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
     api,
     getList: async (model, params) => {
       // model = model.split('|').slice(-1).join('');
-      // console.log('get list', params);
+      // console.log('get list', model, params);
       try {
         let {
           sort: { order, field },

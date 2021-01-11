@@ -15,7 +15,7 @@ export function EntryEdit(props) {
     <Edit {...props}>
       <SimpleForm>
         {Object.keys(fieldConfig).map((property) => (
-          <TypeInput {...inputProps(property, fieldConfig)} />
+          <TypeInput {...inputProps(property, fieldConfig, false, props.resource)} />
         ))}
       </SimpleForm>
     </Edit>

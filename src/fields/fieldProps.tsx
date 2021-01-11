@@ -1,4 +1,5 @@
 import { isSortable } from '../types';
+import getPublicResourceName from '../helpers/getPublicResourceName';
 
 /* 
 this is helper that appends the correct props for a given field, based on its config
@@ -8,7 +9,7 @@ this is helper that appends the correct props for a given field, based on its co
 
 See CardList for example usage
 */
-export function fieldProps(property, fieldConfig) {
+export function fieldProps(property, fieldConfig, resource) {
   if (!fieldConfig[property]) {
     console.warn(`property ${property} not found in fieldConfig`, fieldConfig);
     return { key: property, source: property, type: 'unknown', sortable: false };
@@ -19,6 +20,6 @@ export function fieldProps(property, fieldConfig) {
     // label: fieldConfig[property].config?.label || property,
     type: fieldConfig[property].type,
     sortable: isSortable(fieldConfig[property].type) && !['id', '_id', 'creator', '_creator'].includes(property),
-    reference: fieldConfig[property].validation,
+    reference: getPublicResourceName(fieldConfig[property].validation, resource),
   };
 }
