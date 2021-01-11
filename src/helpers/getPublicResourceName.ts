@@ -1,9 +1,9 @@
-export default function getPublicResourceName(model, resource) {
+export default function getPublicResourceName(model, resource?) {
   if (!model) {
     return;
   }
   if (!resource) {
-    console.log(  'no resource given!', model);
+    //console.log(  'no resource given!', model);
     return model;
   }
   if (!resource.includes('|')) {
