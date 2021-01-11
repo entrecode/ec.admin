@@ -1,6 +1,6 @@
 import getPublicResourceName from '../helpers/getPublicResourceName';
 
-export function inputProps(property, fieldConfig, ignoreReadOnly = false, resource) {
+export function inputProps(property, fieldConfig, ignoreReadOnly = false, resource?) {
   if (!fieldConfig[property]) {
     console.warn(`property ${property} not found in fieldConfig`, fieldConfig);
     return { key: property, source: property, type: 'unknown', sortable: false };

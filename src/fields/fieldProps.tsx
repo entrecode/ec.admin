@@ -9,7 +9,7 @@ this is helper that appends the correct props for a given field, based on its co
 
 See CardList for example usage
 */
-export function fieldProps(property, fieldConfig, resource) {
+export function fieldProps(property, fieldConfig, resource?) {
   if (!fieldConfig[property]) {
     console.warn(`property ${property} not found in fieldConfig`, fieldConfig);
     return { key: property, source: property, type: 'unknown', sortable: false };
