@@ -127,7 +127,8 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
         // TODO serialize fields:
         // - date to iso string
         // - asset magic
-        await entry.save();
+        entry = await entry.save();
+        entry = deserialize(entry, fieldConfig);
         return { data: entry };
       } catch (error) {
         return handleError(error);
