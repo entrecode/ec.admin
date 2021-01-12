@@ -112,7 +112,6 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
     update: async (resource, params) => {
       console.log('update', resource, params);
       try {
-        console.log('update', params.data);
         let entry = await api.entry(resource, params.id);
         const writtenProperties = Object.keys(params.data).filter(
           (key) => !key.startsWith('_') && !systemFields.includes(key)

@@ -2,6 +2,7 @@ import { DataManager } from 'ec.sdk';
 import { environment } from 'ec.sdk/lib/Core';
 import getResource from '../helpers/getResource';
 import getPublicDataProvider from '../helpers/getPublicDataProvider';
+import { DataProvider } from 'react-admin';
 
 // see AppWithResources for usage example
 // implements a resource provider for ec.sdk
@@ -10,7 +11,7 @@ import getPublicDataProvider from '../helpers/getPublicDataProvider';
 // TODO: rename this to ecProvider
 // + cache
 
-export default async (env: environment = 'stage') => {
+export default async (env: environment = 'stage'): Promise<DataProvider> => {
   const api = new DataManager(env);
   return {
     api,
@@ -32,7 +33,7 @@ export default async (env: environment = 'stage') => {
         const [dataProvider, model] = await getPublicData(path, env);
         return dataProvider.getOne(model, params);
       }
-      const { data, id } = await getResource([...path, params.id], api)
+      const { data, id } = await getResource([...path, params.id as string], api)
       const item = { ...data, id: resource[id] };
       return { data: item }
     },
