@@ -1,6 +1,6 @@
 import { environment } from 'ec.sdk/lib/Core';
 import { useEffect, useState } from 'react';
-import resourceProvider from '../providers/resourceProvider';
+import resourceProvider from '../providers/ecProvider';
 
 export function useResources(env: environment = 'stage') {
   const [provider, setProvider] = useState<any>();

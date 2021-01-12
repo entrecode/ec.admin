@@ -6,6 +6,10 @@ import getPublicDataProvider from '../helpers/getPublicDataProvider';
 // see AppWithResources for usage example
 // implements a resource provider for ec.sdk
 // see https://marmelab.com/react-admin/DataProviders.html
+
+// TODO: rename this to ecProvider
+// + cache
+
 export default async (env: environment = 'stage') => {
   const api = new DataManager(env);
   return {
@@ -64,7 +68,7 @@ export default async (env: environment = 'stage') => {
   };
 };
 
-async function getPublicData(path, env/* , api */) {
+export async function getPublicData(path, env/* , api */) {
   if (!path.includes('entry')) {
     throw new Error('can only getPublicDataProvider for resources with "entry" in it.')
   }
