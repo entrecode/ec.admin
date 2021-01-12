@@ -43,13 +43,18 @@ export default async (env: environment = 'stage') => {
         const [dataProvider, model] = await getPublicData(path, env);
         return dataProvider.getMany(model, params);
       }
-      console.log('ALRAM', resource, params);
       return Promise.reject('method "getMany" not yet implemented!');
     },
     create: async (resource, { data }) => {
       return Promise.reject('method "create" not yet implemented!');
     },
     update: async (resource, params) => {
+      // console.log('update', resource);
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, env);
+        return dataProvider.update(model, params);
+      }
       return Promise.reject('method "update" not yet implemented!');
     },
     delete: async (resource, { id, previousData }) => {
