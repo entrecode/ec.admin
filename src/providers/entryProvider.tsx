@@ -3,7 +3,7 @@ import { isSortable, isFilterable } from '../types';
 import { pick, getFormData } from '../helpers';
 import { environment } from 'ec.sdk/lib/Core';
 
-// implements a custom data provider for ec.sdk
+// implements a custom data provider for ec.sdk PublicAPI
 // see https://marmelab.com/react-admin/DataProviders.html
 export default async (datamanagerID, env: environment = 'stage', ecUser = true) => {
   const api = new PublicAPI(datamanagerID, env, ecUser);
@@ -211,4 +211,9 @@ export function serialize(entry, fieldConfig) {
 function handleError(error) {
   const message = `Error ${error.status}:${error.code}, ${error.message}: ${error.detail}`;
   return Promise.reject(message);
+}
+
+export function getDataManagerID(entry) {
+  // this is a "little" hacky.. could instead parse the url to ensure it still works when order changes
+  return entry._links['ec:model'][0].href.split('dataManagerID=')[1].split('&modelID')[0];
 }

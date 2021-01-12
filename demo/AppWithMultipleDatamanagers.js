@@ -7,13 +7,13 @@ import { useAsyncProvider } from '../src/hooks/useAsyncProvider';
 import dmProvider from '../src/providers/dmProvider';
 
 const App = () => {
-  const dataProvider = useAsyncProvider(dmProvider, 'stage');
+  const entryProvider = useAsyncProvider(dmProvider, 'stage');
   const authProvider = useSession();
-  if (!dataProvider || !authProvider) {
+  if (!entryProvider || !authProvider) {
     return <Loading />;
   }
   return (
-    <Admin dataProvider={dataProvider} authProvider={authProvider} theme={themes.light}>
+    <Admin dataProvider={entryProvider} authProvider={authProvider} theme={themes.light}>
       <Resource name="ld_order" list={OrderList} edit={OrderEdit} />
     </Admin>
   );

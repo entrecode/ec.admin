@@ -50,23 +50,23 @@ const AsyncResources = () => {
 };
 
 const App = () => {
-  /* const dataProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42'); */
-  //const dataProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42');
-  const dataProvider = useResources('stage');
+  /* const entryProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42'); */
+  //const entryProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42');
+  const entryProvider = useResources('stage');
   // cannot useLocation here
   const api = {
     admin: '73538731-4ac3-4a1a-b3b5-e31d09e94d42',
     another: '1fb9fa78-ab95-4bdf-8cca-168357c9faef',
   };
-  //const dataProvider = useDatamanager(api.admin);
+  //const entryProvider = useDatamanager(api.admin);
 
   const authProvider = useSession();
-  if (!dataProvider || !authProvider) {
+  if (!entryProvider || !authProvider) {
     return <Loading />;
   }
   return (
     <AdminContext
-      dataProvider={dataProvider}
+      dataProvider={entryProvider}
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       customRoutes={customRoutes}

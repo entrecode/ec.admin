@@ -1,4 +1,4 @@
-import dataProvider from '../providers/dataProvider';
+import dataProvider from '../providers/entryProvider';
 
 let publicDataProviders = {}; // "cache"
 

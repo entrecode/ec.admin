@@ -38,7 +38,7 @@ The following features may be implemented in the future:
 
 ### Resource Support
 
-Currently, dataProvider only wraps one instance of PublicAPI.
+Currently, entryProvider only wraps one instance of PublicAPI.
 It would be a great addition if multiple instances of a PublicAPI could be accessed with one [dataProvider](https://marmelab.com/react-admin/DataProviders.html#extending-a-data-provider-example-of-file-upload).
 Also, the more generic Resources could be supported. This would enable potential CRUD support for all entrecode resources. The implementation could be done step by step:
 

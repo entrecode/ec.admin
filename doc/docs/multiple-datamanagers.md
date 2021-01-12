@@ -74,10 +74,10 @@ export const OrderList = (props) => (
 
 ### getList
 
-Finally, the dataManagerID must be handled by the dataProvider:
+Finally, the dataManagerID must be handled by the entryProvider:
 
 ```js
-import dataProvider from './dataProvider'; // existing provider for a single datamanager
+import entryProvider from './entryProvider'; // existing provider for a single datamanager
 
 const dmProvider = {
   getList: async (resource, params) => {
@@ -88,13 +88,13 @@ const dmProvider = {
     }
     const dataManagerID = filter.dataManagerID;
     delete filter.dataManagerID; // delete from filter as dataManagerID is not a real field
-    const p = await dataProvider(dataManagerID, env, true); // use existing single datamanager provider
+    const p = await entryProvider(dataManagerID, env, true); // use existing single datamanager provider
     return await p.getList(resource, { ...params, filter });
   },
 };
 ```
 
-The above provider just handles the dataManagerID filter, while the rest of the logic can be delegated to dataProvider.
+The above provider just handles the dataManagerID filter, while the rest of the logic can be delegated to entryProvider.
 
 ### Edit
 
@@ -120,7 +120,7 @@ export const OrderEdit = (props) => {
 
 ### getOne
 
-The Edit component will trigger dataProvider.getOne to be loaded. The Problem: We do not have a filter param, as it is only part of List. We need some way to pass the dataManagerID.. Solution: Use "absolute" entry ids of the form "shortID|entryID":
+The Edit component will trigger entryProvider.getOne to be loaded. The Problem: We do not have a filter param, as it is only part of List. We need some way to pass the dataManagerID.. Solution: Use "absolute" entry ids of the form "shortID|entryID":
 
 ```js
 const dmProvider = {
@@ -144,7 +144,7 @@ These ids can then be split in getOne:
 const dmProvider = {
   getOne: async (resource, params) => {
     const [dataManagerID, id] = params.id.split('|');
-    const p = await dataProvider(dataManagerID, env, true); // use existing dataProvider
+    const p = await entryProvider(dataManagerID, env, true); // use existing dataProvider
     const { data } = await p.getOne(resource, { ...params, id }); // pass only entryID
     return { data: { ...data, id: `${dataManagerID}|${data.id}` } }; // add dmID again
   },

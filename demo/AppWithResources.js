@@ -38,13 +38,13 @@ const i18nProvider = polyglotI18nProvider((locale) => {
 }; */
 
 const App = () => {
-  const dataProvider = useResources('stage');
+  const ecProvider = useResources('stage');
   const authProvider = useSession();
-  if (!dataProvider || !authProvider) {
+  if (!ecProvider || !authProvider) {
     return <Loading />;
   }
   return (
-    <Admin dataProvider={dataProvider} authProvider={authProvider} theme={themes.light} i18nProvider={i18nProvider}>
+    <Admin dataProvider={ecProvider} authProvider={authProvider} theme={themes.light} i18nProvider={i18nProvider}>
       <Resource name="dataManager" list={DatamanagerList} />
       <Resource name="template" list={ListGuesser} edit={EditGuesser} />
       <Resource name="dataManager" list={ListGuesser} edit={EditGuesser} />
