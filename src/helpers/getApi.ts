@@ -1,6 +1,6 @@
 // this is just a sketch yet
 
-// plan to make this work with resourceProvider (no api in dataProvider)
+// plan to make this work with ecProvider (no api in dataProvider)
 // take resource:
 // const path = "dataManager|30ded721-f935-4fe9-9f2c-4a2952f7bfcb|model|061edd27-555f-4426-88ad-c49ce2e9328b|entry".split();
 // const dmID = path[1];
