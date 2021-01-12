@@ -1,6 +1,8 @@
 import Core from 'ec.sdk/lib/Core';
 import Resource from 'ec.sdk/lib/resources/Resource';
 
+// TODO: add simple cache
+
 // see getResource.md for explanation
 async function getResource(path: string[], api: Resource | Core) {
   const relations = api.getAvailableRelations();

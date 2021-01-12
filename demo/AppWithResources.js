@@ -5,6 +5,7 @@ import { useResources } from '../src/hooks/useResources';
 import { EntryList } from '../src/entry/EntryList';
 import { EntryEdit } from '../src/entry/EntryEdit';
 import { MuffinList } from './MuffinList';
+import { DatamanagerList } from './DatamanagerList';
 
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import germanMessages from 'ra-language-german';
@@ -44,6 +45,7 @@ const App = () => {
   }
   return (
     <Admin dataProvider={dataProvider} authProvider={authProvider} theme={themes.light} i18nProvider={i18nProvider}>
+      <Resource name="dataManager" list={DatamanagerList} />
       <Resource name="template" list={ListGuesser} edit={EditGuesser} />
       <Resource name="dataManager" list={ListGuesser} edit={EditGuesser} />
       <Resource name="dataManager|73538731-4ac3-4a1a-b3b5-e31d09e94d42|model" list={ListGuesser} edit={EditGuesser} />

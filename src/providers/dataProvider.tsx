@@ -184,7 +184,7 @@ async function uploadAssets(data, fieldConfig, api) {
   return data;
 }
 
-function deserialize(entry, fieldConfig) {
+export function deserialize(entry, fieldConfig) {
   Object.entries<any>(fieldConfig).forEach(([property, { type }]) => {
     if (['location', 'json'].includes(type) && !!entry[property]) {
       entry[property] = JSON.stringify(entry[property]);
@@ -199,7 +199,7 @@ function deserialize(entry, fieldConfig) {
   return entry;
 }
 
-function serialize(entry, fieldConfig) {
+export function serialize(entry, fieldConfig) {
   Object.entries<any>(fieldConfig).forEach(([property, { type }]) => {
     if (['location', 'json'].includes(type) && !!entry[property]) {
       entry[property] = JSON.parse(entry[property]);

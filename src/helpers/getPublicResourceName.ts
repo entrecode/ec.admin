@@ -10,7 +10,7 @@ export default function getPublicResourceName(model, resource?) {
     // using dataProvider with model title as resource names
     return model;
   }
-  // using resourceProvider with `dataManager|${dmID}|model|${model}|entry"
+  // using ecProvider with `dataManager|${dmID}|model|${model}|entry"
   const prefix = resource.split('|').slice(0, 3).join('|');
   return `${prefix}|${model}|entry`;
 };

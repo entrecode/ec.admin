@@ -6,6 +6,10 @@ import getPublicDataProvider from '../helpers/getPublicDataProvider';
 // see AppWithResources for usage example
 // implements a resource provider for ec.sdk
 // see https://marmelab.com/react-admin/DataProviders.html
+
+// TODO: rename this to ecProvider
+// + cache
+
 export default async (env: environment = 'stage') => {
   const api = new DataManager(env);
   return {
@@ -39,13 +43,18 @@ export default async (env: environment = 'stage') => {
         const [dataProvider, model] = await getPublicData(path, env);
         return dataProvider.getMany(model, params);
       }
-      console.log('ALRAM', resource, params);
       return Promise.reject('method "getMany" not yet implemented!');
     },
     create: async (resource, { data }) => {
       return Promise.reject('method "create" not yet implemented!');
     },
     update: async (resource, params) => {
+      // console.log('update', resource);
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, env);
+        return dataProvider.update(model, params);
+      }
       return Promise.reject('method "update" not yet implemented!');
     },
     delete: async (resource, { id, previousData }) => {
@@ -64,7 +73,7 @@ export default async (env: environment = 'stage') => {
   };
 };
 
-async function getPublicData(path, env/* , api */) {
+export async function getPublicData(path, env/* , api */) {
   if (!path.includes('entry')) {
     throw new Error('can only getPublicDataProvider for resources with "entry" in it.')
   }
