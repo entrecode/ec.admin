@@ -32,9 +32,8 @@ useResources(env?)
 
 Returns [dataProvider](https://marmelab.com/react-admin/Admin.html#dataprovider) that internally uses [DataManager](https://entrecode.github.io/ec.sdk/#datamanager) API.
 
-```
-const dataProvider = useResources('stage');
-
+```js
+const ecProvider = useResources('stage');
 ```
 
 ### Example
@@ -47,13 +46,13 @@ import { Admin, Resource, Loading } from 'react-admin';
 import { useSession, useDatamanager, entryCrud } from 'ec.admin';
 
 const App = () => {
-  const dataProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42'); // datamanagerID
+  const entryProvider = useDatamanager('73538731-4ac3-4a1a-b3b5-e31d09e94d42');
   const authProvider = useSession();
   if (!dataProvider || !authProvider) {
     return <Loading />;
   }
   return (
-    <Admin dataProvider={dataProvider} authProvider={authProvider}>
+    <Admin dataProvider={entryProvider} authProvider={authProvider}>
       {/* Resources */}
     </Admin>
   );

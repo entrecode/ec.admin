@@ -3,7 +3,7 @@ import { isSortable, isFilterable } from '../types';
 import { pick, getFormData } from '../helpers';
 import { environment } from 'ec.sdk/lib/Core';
 
-// implements a custom data provider for ec.sdk
+// implements a custom data provider for ec.sdk PublicAPI
 // see https://marmelab.com/react-admin/DataProviders.html
 export default async (datamanagerID, env: environment = 'stage', ecUser = true) => {
   const api = new PublicAPI(datamanagerID, env, ecUser);
@@ -112,7 +112,6 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
     update: async (resource, params) => {
       console.log('update', resource, params);
       try {
-        console.log('update', params.data);
         let entry = await api.entry(resource, params.id);
         const writtenProperties = Object.keys(params.data).filter(
           (key) => !key.startsWith('_') && !systemFields.includes(key)
@@ -166,14 +165,14 @@ async function uploadAssets(data, fieldConfig, api) {
   const assets = Object.fromEntries(
     Object.entries<any>(fieldConfig)
       .filter(([key, { type }]) => type === 'asset' && data[key]?.rawFile)
-      .map(([key]) => [key, data[key].rawFile])
+      .map(([key, { validation: assetGroup }]) => [key, { rawFile: data[key].rawFile, assetGroup }])
   );
   await Promise.all(
-    Object.entries(assets).map(([key, value]) => {
+    Object.entries(assets).map(([key, { rawFile, assetGroup }]) => {
       return api
         .createDMAssets(
-          'test',
-          getFormData([value], {
+          assetGroup,
+          getFormData([rawFile], {
             ignoreDuplicates: true,
           })
         )
@@ -212,4 +211,13 @@ export function serialize(entry, fieldConfig) {
 function handleError(error) {
   const message = `Error ${error.status}:${error.code}, ${error.message}: ${error.detail}`;
   return Promise.reject(message);
+}
+
+export function getDataManagerID(entry) {
+  const url = entry._links['ec:model']?.[0]?.href;
+  if (!url) {
+    console.log('entry', entry);
+    throw new Error('could not get dataManagerID from entry');
+  }
+  return new URL(url).searchParams?.get('dataManagerID');
 }

@@ -1,4 +1,4 @@
-import dataProvider from './dataProvider';
+import dataProvider from './entryProvider';
 
 // see AppWithMultipleDatamanagers for usage example
 
