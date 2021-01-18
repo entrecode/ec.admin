@@ -4,8 +4,10 @@ import { useSession, themes } from '../lib';
 import { useResources } from '../src/hooks/useResources';
 import { EntryList } from '../src/entry/EntryList';
 import { EntryEdit } from '../src/entry/EntryEdit';
+import { EntryCreate } from '../src/entry/EntryCreate';
 import { MuffinList } from './MuffinList';
 import { DatamanagerList } from './DatamanagerList';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import germanMessages from 'ra-language-german';
@@ -59,7 +61,7 @@ const App = () => {
         list={ListGuesser}
         edit={EditGuesser}
       />
-      <Resource name="dataManager|83cc6374|model|muffin|entry" list={MuffinList} edit={EntryEdit} />
+      <Resource name="dataManager|83cc6374|model|muffin|entry" icon={HelpOutlineIcon} list={MuffinList} edit={EntryEdit} create={EntryCreate} />
       <Resource name="dataManager|83cc6374|model|baker|entry" list={EntryList} edit={EntryEdit} />
       <Resource name="dataManager|2b5c50c8|model|ld_order|entry" list={EntryList} edit={EntryEdit} />
       <Resource name="dataManager|2b5c50c8|model|ld_order_item|entry" list={null} edit={EntryEdit} />

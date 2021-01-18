@@ -46,7 +46,12 @@ export default async (env: environment = 'stage'): Promise<DataProvider> => {
       }
       return Promise.reject('method "getMany" not yet implemented!');
     },
-    create: async (resource, { data }) => {
+    create: async (resource, params) => {
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, env);
+        return dataProvider.create(model, params);
+      }
       return Promise.reject('method "create" not yet implemented!');
     },
     update: async (resource, params) => {

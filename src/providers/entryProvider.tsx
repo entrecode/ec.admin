@@ -165,14 +165,14 @@ async function uploadAssets(data, fieldConfig, api) {
   const assets = Object.fromEntries(
     Object.entries<any>(fieldConfig)
       .filter(([key, { type }]) => type === 'asset' && data[key]?.rawFile)
-      .map(([key]) => [key, data[key].rawFile])
+      .map(([key, { validation: assetGroup }]) => [key, { rawFile: data[key].rawFile, assetGroup }])
   );
   await Promise.all(
-    Object.entries(assets).map(([key, value]) => {
+    Object.entries(assets).map(([key, { rawFile, assetGroup }]) => {
       return api
         .createDMAssets(
-          'test',
-          getFormData([value], {
+          assetGroup,
+          getFormData([rawFile], {
             ignoreDuplicates: true,
           })
         )
@@ -214,6 +214,10 @@ function handleError(error) {
 }
 
 export function getDataManagerID(entry) {
-  // this is a "little" hacky.. could instead parse the url to ensure it still works when order changes
-  return entry._links['ec:model'][0].href.split('dataManagerID=')[1].split('&modelID')[0];
+  const url = entry._links['ec:model']?.[0]?.href;
+  if (!url) {
+    console.log('entry', entry);
+    throw new Error('could not get dataManagerID from entry');
+  }
+  return new URL(url).searchParams?.get('dataManagerID');
 }
