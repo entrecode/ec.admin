@@ -97,20 +97,18 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
       }
     },
     create: async (model, { data }) => {
-      console.log('create', model, data);
+      // console.log('create', model, data);
       try {
-        console.log('create', model, { data });
         const fieldConfig = await api.getFieldConfig(model);
         data = await uploadAssets(data, fieldConfig, api);
         const entry = await api.createEntry(model, data);
-        console.log('created!', entry);
         return { data: entry };
       } catch (error) {
         return handleError(error);
       }
     },
     update: async (resource, params) => {
-      console.log('update', resource, params);
+      // console.log('update', resource, params);
       try {
         let entry = await api.entry(resource, params.id);
         const writtenProperties = Object.keys(params.data).filter(
@@ -134,9 +132,8 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
       }
     },
     delete: async (model, { id, previousData }) => {
-      console.log('delete', model, id, previousData);
+      // console.log('delete', model, id, previousData);
       try {
-        console.log('delete', model, previousData);
         const entry = await api.entry(model, id);
         if (!entry) {
           return Promise.reject('Entry not found.. Already Deleted?');
@@ -154,7 +151,7 @@ export default async (datamanagerID, env: environment = 'stage', ecUser = true) 
       return Promise.reject('method "updateMany" not yet implemented!');
     },
     deleteMany: (resource, params) => {
-      console.log('deleteMany', resource);
+      // console.log('deleteMany', resource);
       return Promise.reject('method "deleteMany" not yet implemented!');
     },
   };
@@ -169,6 +166,7 @@ async function uploadAssets(data, fieldConfig, api) {
   );
   await Promise.all(
     Object.entries(assets).map(([key, { rawFile, assetGroup }]) => {
+      // console.log('raw file', rawFile);
       return api
         .createDMAssets(
           assetGroup,
@@ -216,7 +214,7 @@ function handleError(error) {
 export function getDataManagerID(entry) {
   const url = entry._links['ec:model']?.[0]?.href;
   if (!url) {
-    console.log('entry', entry);
+    // console.log('entry', entry);
     throw new Error('could not get dataManagerID from entry');
   }
   return new URL(url).searchParams?.get('dataManagerID');
