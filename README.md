@@ -24,6 +24,7 @@ npm run demo
 npm run clean # remove lib
 npm run build # build lib
 npm publish # publish version => also make release via gitflow
+# finish release
 # TODO: add script that runs above + makes git release
 ```
 
