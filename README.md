@@ -20,6 +20,7 @@ npm run demo
 ## Build & Publish
 
 ```sh
+# start release + bump version
 npm run clean # remove lib
 npm run build # build lib
 npm publish # publish version => also make release via gitflow

@@ -8,8 +8,7 @@ import { DataProvider } from 'react-admin';
 // implements a resource provider for ec.sdk
 // see https://marmelab.com/react-admin/DataProviders.html
 
-// TODO: rename this to ecProvider
-// + cache
+// TODO: cache
 
 export default async (env: environment = 'stage'): Promise<DataProvider> => {
   const api = new DataManager(env);
@@ -63,8 +62,13 @@ export default async (env: environment = 'stage'): Promise<DataProvider> => {
       }
       return Promise.reject('method "update" not yet implemented!');
     },
-    delete: async (resource, { id, previousData }) => {
-      return Promise.reject('method "delete" not yet implemented!');
+    delete: async (resource, params) => {
+      const path = resource.split('|');
+      if (path.includes('entry')) { // need PublicAPI
+        const [dataProvider, model] = await getPublicData(path, env);
+        return dataProvider.delete(model, params);
+      }
+      return Promise.reject('method "update" not yet implemented!');
     },
     getManyReference: (resource, params) => {
       return Promise.reject('method "getManyReference" not yet implemented!');

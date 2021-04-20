@@ -2,6 +2,7 @@ import dataProvider from '../providers/entryProvider';
 
 let publicDataProviders = {}; // "cache"
 
+// TODO: rename to getEntryProvider
 export default async function getPublicDataProvider(dataManagerID, env) {
   if (!!publicDataProviders[dataManagerID]) {
     // console.log('cached');

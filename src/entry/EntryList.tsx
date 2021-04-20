@@ -13,6 +13,7 @@ export const EntryList = (props) => {
   if (!fieldConfig) {
     return <Loading />;
   }
+  // TODO: be able to choose between customizabledatagrid and datagrid
   // defaultColumns={defaultColumns}
   return (
     <List
